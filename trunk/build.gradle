@@ -1,0 +1,18 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        maven { url 'http://sf1-8yoohoo-ixb-mb.wellsfargo.com:9090/archiva/repository/internal/' }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0-rc2'
+    }
+}
+
+allprojects {
+    repositories {
+        maven { url 'http://sf1-8yoohoo-ixb-mb.wellsfargo.com:9090/archiva/repository/internal/' }
+        jcenter()
+    }
+}
