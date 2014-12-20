@@ -1,0 +1,41 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light">
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="AppTheme.BaseButton">
+        <item name="android:paddingLeft">@dimen/button_padding_left</item>
+        <item name="android:paddingRight">@dimen/button_padding_right</item>
+        <item name="android:paddingTop">@dimen/button_padding_top</item>
+        <item name="android:paddingBottom">@dimen/button_padding_bottom</item>
+    </style>
+
+    <style name="AppTheme.PrimaryButton" parent="AppTheme.BaseButton">
+        <item name="android:background">@drawable/primary_button_selector</item>
+        <item name="android:textColor">@color/secondary_1_1</item>
+        <!--<item name="android:paddingLeft">10dp</item>-->
+        <!--<item name="android:paddingRight">10dp</item>-->
+        <!--<item name="android:paddingTop">15dp</item>-->
+        <!--<item name="android:paddingBottom">15dp</item>-->
+    </style>
+
+    <style name="AppTheme.BehindButton" parent="AppTheme.BaseButton">
+        <item name="android:background">@drawable/behind_button_selector</item>
+        <item name="android:textColor">@color/secondary_2_1</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance" parent="android:TextAppearance">
+        <item name="android:textColor">@color/primary_text</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Medium" parent="AppTheme.TextAppearance">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Small" parent="AppTheme.TextAppearance">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+</resources>

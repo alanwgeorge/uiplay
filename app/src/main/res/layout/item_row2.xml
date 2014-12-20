@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<com.example.android.uiplay.view.AccountDetailLayout-->
+
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="1000dp"
+    android:layout_height="@dimen/account_item_height"
+    android:layout_gravity="right">
+    <com.example.android.uiplay.view.AccountRowFrontRelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/front_layout">
+        <RelativeLayout
+            android:layout_width="1000dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/account_details_container">
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:id="@+id/account_name"
+                android:layout_alignParentLeft="true"
+                android:text="My Checking"
+                style="@android:style/TextAppearance.Medium"
+                android:background="@android:color/darker_gray"/>
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:id="@+id/account_number"
+                android:layout_toRightOf="@+id/account_name"
+                android:text="...9876"
+                android:background="@android:color/holo_blue_light"/>
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:id="@+id/balance_description"
+                android:layout_toRightOf="@+id/account_number"
+                android:text="Available balance"
+                android:background="@android:color/holo_orange_light"/>
+            <TextView
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:layout_toRightOf="@+id/balance_description"
+                android:id="@+id/balance"
+                android:text="$4,987.98"
+                style="@android:style/TextAppearance.Medium"
+                android:background="@android:color/holo_red_light"/>
+        </RelativeLayout>
+    </com.example.android.uiplay.view.AccountRowFrontRelativeLayout>
+</FrameLayout>
+<!--</com.example.android.uiplay.view.AccountDetailLayout>-->
+
