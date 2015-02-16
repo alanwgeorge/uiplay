@@ -2,10 +2,7 @@ package com.example.android.uiplay;
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Point;
-import android.graphics.Rect;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Display;
@@ -17,7 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 /**
@@ -79,14 +75,14 @@ public class AccountListFragment extends Fragment {
         pressMeBehindButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Behind Press Me pressed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Behind Press Me pressed", Toast.LENGTH_SHORT).show();
             }
         });
 
         pressMeFrontButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getActivity(), "Front Press Me pressed", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Front Press Me pressed", Toast.LENGTH_SHORT).show();
             }
         });
         // hide the divider for the first item in list
