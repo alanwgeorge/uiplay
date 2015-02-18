@@ -16,9 +16,13 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.android.uiplay.model.Account;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -52,7 +56,7 @@ public class AccountListFragment extends ListFragment {
             case R.id.action_add_item:
                 Log.d(TAG, "add item menu selected");
                 addAccountRow(fragmentContainer);
-//                addAccountRow();
+                addAccountRow();
                 break;
         }
 
@@ -63,14 +67,17 @@ public class AccountListFragment extends ListFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
         fragmentContainer = (ViewGroup) rootView.findViewById(R.id.fragment_container);
-        accountArrayAdapter = new AccountArrayAdapter(getActivity(), R.layout.item_row, new Account[]{new Account("My Account", 100000, "Available Balance", "...5463")});
+
+        List<Account> accountList = new ArrayList<>();
+        accountList.add(new Account("My Account", 100000, "Available Balance", "...5463"));
+
+        accountArrayAdapter = new AccountArrayAdapter(getActivity(), R.layout.item_row, accountList);
         setListAdapter(accountArrayAdapter);
         accountArrayAdapter.setNotifyOnChange(true);
 
         return rootView;
     }
 
-    @SuppressWarnings("UnusedDeclaration")
     private void addAccountRow() {
         accountArrayAdapter.add(new Account("My Account", 100000, "Available Balance", "...5463"));
     }
@@ -150,28 +157,28 @@ public class AccountListFragment extends ListFragment {
     private static class AccountArrayAdapter extends ArrayAdapter<Account> {
         Context context;
 
-        public AccountArrayAdapter(Context context, int resource, Account[] objects) {
+        private AccountArrayAdapter(Context context, int resource, List<Account> objects) {
             super(context, resource, objects);
             this.context = context;
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            View view;
+            RelativeLayout fragmentContent;
 
             if (convertView != null) {
-                view = convertView;
+                fragmentContent = (RelativeLayout) convertView;
             } else {
                 LayoutInflater layoutInflater = LayoutInflater.from(context);
-                view = layoutInflater.inflate(R.layout.item_row, parent, false);
+                fragmentContent = (RelativeLayout) layoutInflater.inflate(R.layout.item_row, parent, false);
             }
-            Button pressMeBehindButton = (Button) view.findViewById(R.id.button_below);
-            Button pressMeFrontButton = (Button) view.findViewById(R.id.button_front);
-            View frontLayout = view.findViewById(R.id.front_layout);
-            ViewGroup frontButtonsContainer = (ViewGroup) view.findViewById(R.id.front_buttons_container);
-            View initialVisibleLayout = view.findViewById(R.id.account_details_container);
-            View behindLayout = view.findViewById(R.id.behind_layout);
-            View divider = view.findViewById(R.id.account_list_divider);
+            Button pressMeBehindButton = (Button) fragmentContent.findViewById(R.id.button_below);
+            Button pressMeFrontButton = (Button) fragmentContent.findViewById(R.id.button_front);
+            View frontLayout = fragmentContent.findViewById(R.id.front_layout);
+            ViewGroup frontButtonsContainer = (ViewGroup) fragmentContent.findViewById(R.id.front_buttons_container);
+            View initialVisibleLayout = fragmentContent.findViewById(R.id.account_details_container);
+            View behindLayout = fragmentContent.findViewById(R.id.behind_layout);
+            View divider = fragmentContent.findViewById(R.id.account_list_divider);
 
             pressMeBehindButton.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -199,29 +206,29 @@ public class AccountListFragment extends ListFragment {
             int viewWidth = displayWidth + ((int) context.getResources().getDimension(R.dimen.account_button_width) * frontButtonsContainer.getChildCount());
 
             // set the "front" views width to accommodate for the off screen buttons
-            ViewGroup.LayoutParams params = view.getLayoutParams();
+            ViewGroup.LayoutParams params = fragmentContent.getLayoutParams();
             params.width = viewWidth;
-            view.setLayoutParams(params);
+//            fragmentContent.setLayoutParams(params);
 
             params = frontLayout.getLayoutParams();
             params.width = viewWidth;
-            frontLayout.setLayoutParams(params);
+//            frontLayout.setLayoutParams(params);
 
             params = divider.getLayoutParams();
             params.width = viewWidth;
-            divider.setLayoutParams(params);
+//            divider.setLayoutParams(params);
 
             // Here we adjust the width of the initially visible part of our layout and the behind/hidden part to
             // be the width of the display area.
             params = initialVisibleLayout.getLayoutParams();
             params.width = displayWidth;
-            initialVisibleLayout.setLayoutParams(params);
+//            initialVisibleLayout.setLayoutParams(params);
 
             params = behindLayout.getLayoutParams();
             params.width = displayWidth;
-            behindLayout.setLayoutParams(params);
+//            behindLayout.setLayoutParams(params);
 
-            return view;
+            return fragmentContent;
         }
     }
 }

@@ -8,7 +8,7 @@
     android:layout_gravity="end"
     android:orientation="vertical">
 
-    <View android:layout_width="@dimen/account_item_width"
+    <RelativeLayout android:layout_width="@dimen/account_item_width"
           android:layout_height="2dp"
           android:id="@+id/account_list_divider"
           android:background="@color/secondary_2_3"/>
