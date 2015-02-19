@@ -3,20 +3,16 @@ package com.example.android.uiplay.view;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MotionEventCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.RelativeLayout;
 
 import com.example.android.uiplay.R;
 
 public class AccountRowFrontRelativeLayout extends RelativeLayout implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
-    private static final String TAG = "AccountRowFrontRelativeLayout";
+    private static final String TAG = "AccountRowFrntRltivLyut";
 
     private GestureDetectorCompat gestureDetector;
     private float onDownFrontViewX;
@@ -148,7 +144,7 @@ public class AccountRowFrontRelativeLayout extends RelativeLayout implements Ges
         Log.d(TAG, "onFling(" + e1 + ", " + e2 + ", " + velocityX + ", " + velocityY + ")");
 
         int belowButtonWidth = (int) getContext().getResources().getDimension(R.dimen.button_below_width);
-        int frontButtonWidth = (int) getContext().getResources().getDimension(R.dimen.account_button_width);
+//        int frontButtonWidth = (int) getContext().getResources().getDimension(R.dimen.account_button_width);
 
         if (getX() < 0) {
             if (velocityX < 0) {
