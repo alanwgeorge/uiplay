@@ -8,16 +8,11 @@
     android:layout_gravity="end"
     android:orientation="vertical">
 
-    <!--<RelativeLayout android:layout_width="@dimen/account_item_width"-->
-          <!--android:layout_height="2dp"-->
-          <!--android:id="@+id/account_list_divider"-->
-          <!--android:background="@color/secondary_2_3"/>-->
-
     <RelativeLayout
         android:layout_width="@dimen/account_item_width"
         android:layout_height="@dimen/account_item_height"
         android:id="@+id/behind_layout"
-        android:padding="10dp"
+        android:padding="@dimen/button_below_padding"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:visibility="visible"
