@@ -10,4 +10,5 @@
     <dimen name="button_padding_bottom">2dp</dimen>
     <dimen name="button_padding_left">2dp</dimen>
     <dimen name="button_padding_right">2dp</dimen>
+    <dimen name="button_below_padding">10dp</dimen>
 </resources>

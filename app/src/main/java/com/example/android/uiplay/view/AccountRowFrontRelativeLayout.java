@@ -98,8 +98,8 @@ public class AccountRowFrontRelativeLayout extends RelativeLayout implements Ges
 
     @Override
     public boolean onDown(MotionEvent e) {
-        Log.d(TAG, "onDown(" + e + ")");
         onDownFrontViewX = getX();
+        Log.d(TAG, "onDown(" + e + ") x = " + onDownFrontViewX);
         return true;
     }
 
@@ -121,14 +121,23 @@ public class AccountRowFrontRelativeLayout extends RelativeLayout implements Ges
         Log.d(TAG, "getX() = " + getX());
 
         int frontButtonWidth = (int) getContext().getResources().getDimension(R.dimen.account_button_width);
+        int belowButtonWidth = (int) getContext().getResources().getDimension(R.dimen.button_below_width);
+        int belowButtonPadding = (int) getContext().getResources().getDimension(R.dimen.button_below_padding);
 
-        float newX = onDownFrontViewX + (motionEvent2.getRawX() - motionEvent1.getRawX());
-
-        if (newX > frontButtonWidth) {
-            newX = frontButtonWidth;
+        if ((motionEvent2.getRawX() - motionEvent1.getRawX()) > 0) { // scrolling right
+            if (onDownFrontViewX == 0) {  // un-scrolled position
+                animate().x(frontButtonWidth); // reveal front button
+            } else if (onDownFrontViewX == -(belowButtonWidth + (belowButtonPadding * 2))) { // scrolled left below button visible
+                animate().x(0); // return to un-scrolled position
+            }
+        } else { // scrolling left
+            if (onDownFrontViewX == 0) { // un-scrolled position
+                animate().x(-(belowButtonWidth + (belowButtonPadding * 2))); // reveal bellow button
+            } else if (onDownFrontViewX == frontButtonWidth) { // scrolled right front button visible
+                animate().x(0); // return to un-scrolled position
+            }
         }
 
-        setX(newX);
         requestLayout();
 
         return true;
@@ -142,19 +151,6 @@ public class AccountRowFrontRelativeLayout extends RelativeLayout implements Ges
     @Override
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         Log.d(TAG, "onFling(" + e1 + ", " + e2 + ", " + velocityX + ", " + velocityY + ")");
-
-        int belowButtonWidth = (int) getContext().getResources().getDimension(R.dimen.button_below_width);
-//        int frontButtonWidth = (int) getContext().getResources().getDimension(R.dimen.account_button_width);
-
-        if (getX() < 0) {
-            if (velocityX < 0) {
-                Log.d(TAG, "fling to left, velocityX = " + velocityX);
-                animate().x(-(belowButtonWidth + (30 * 2)));
-            } else {
-                Log.d(TAG, "fling to right, velocityX = " + velocityX);
-                animate().x(0);
-            }
-        }
 
         return true;
     }
