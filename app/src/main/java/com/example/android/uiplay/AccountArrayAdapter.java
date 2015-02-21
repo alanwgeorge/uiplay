@@ -3,7 +3,9 @@ package com.example.android.uiplay;
 import android.content.Context;
 import android.graphics.Point;
 import android.view.Display;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -44,7 +46,7 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
             viewHolder = new ViewHolder();
 
             viewHolder.root = fragmentContent;
-            viewHolder.parent = parent;
+            viewHolder.parent = parent; // ListView
 
             viewHolder.pressMeBehindButton = (Button) fragmentContent.findViewById(R.id.button_below);
             viewHolder.pressMeFrontButton = (Button) fragmentContent.findViewById(R.id.button_front);
@@ -61,11 +63,28 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
             fragmentContent.setTag(viewHolder);
         }
 
+        setupGestureDetector(viewHolder);
         setupButtonListeners(viewHolder);
         setupViewWidths(viewHolder);
         populateData(position, viewHolder);
 
         return fragmentContent;
+    }
+
+    private void setupGestureDetector(ViewHolder viewHolder) {
+        AccountListFragment.AccountRowGestureListener gestureListener
+                = new AccountListFragment.AccountRowGestureListener(
+                context,
+                viewHolder.frontLayout,
+                viewHolder.parent);
+
+        final GestureDetector gestureDetector = new GestureDetector(context, gestureListener);
+        viewHolder.frontLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                return gestureDetector.onTouchEvent(event);
+            }
+        });
     }
 
     private void populateData(int position, ViewHolder viewHolder) {

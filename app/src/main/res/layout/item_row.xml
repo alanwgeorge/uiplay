@@ -29,7 +29,7 @@
             style="@style/AppTheme.BehindButton"/>
     </RelativeLayout>
 
-    <com.example.android.uiplay.view.AccountRowFrontRelativeLayout
+    <RelativeLayout
         android:layout_width="@dimen/account_item_width"
         android:layout_height="@dimen/account_item_height"
         android:id="@+id/front_layout"
@@ -127,5 +127,5 @@
                 style="@style/AppTheme.PrimaryButton"
                 tools:ignore="HardcodedText"/>
         </RelativeLayout>
-    </com.example.android.uiplay.view.AccountRowFrontRelativeLayout>
+    </RelativeLayout>
 </RelativeLayout>
