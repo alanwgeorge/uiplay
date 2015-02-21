@@ -8,5 +8,17 @@
     <string name="button_below_label">Press Me</string>
     <string name="no_accounts_message">No Accounts Found</string>
     <string name="action_test">Test</string>
+    <string name="title_activity_drawer">DrawerActivity</string>
+
+    <string name="title_section1">Account List</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_tab">TabActivity</string>
+    <string name="title_activity_tab2">Tab2Activity</string>
 
 </resources>

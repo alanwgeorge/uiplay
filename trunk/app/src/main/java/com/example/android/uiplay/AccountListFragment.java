@@ -1,6 +1,6 @@
 package com.example.android.uiplay;
 
-import android.animation.LayoutTransition;
+import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Context;
 import android.os.Bundle;
@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.example.android.uiplay.model.Account;
 
@@ -58,16 +57,19 @@ public class AccountListFragment extends ListFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
 
-        ListView listView = (ListView) rootView.findViewById(android.R.id.list);
-        LayoutTransition layoutTransition = new LayoutTransition();
-        listView.setLayoutTransition(layoutTransition);
-
         accountArrayAdapter = new AccountArrayAdapter(getActivity(), 0, new ArrayList<Account>());
         setListAdapter(accountArrayAdapter);
         accountArrayAdapter.setNotifyOnChange(true);
         addAccountRow();
 
         return rootView;
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((MainActivity) activity).onSectionAttached(
+                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 
     private void addAccountRow() {
