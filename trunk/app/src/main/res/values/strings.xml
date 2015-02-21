@@ -7,5 +7,6 @@
     <string name="action_add">Add Row</string>
     <string name="button_below_label">Press Me</string>
     <string name="no_accounts_message">No Accounts Found</string>
+    <string name="action_test">Test</string>
 
 </resources>
