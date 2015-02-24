@@ -6,14 +6,16 @@ public class Account {
     public int balance;
     public String balanceDescription;
     public String maskedAccountNumber;
+    public int numberOfButtons;
 
     public Account() { }
 
-    public Account(String name, int balance, String balanceDescription, String maskedAccountNumber) {
+    public Account(String name, int balance, String balanceDescription, String maskedAccountNumber, int numberOfButtons) {
         this.name = name;
         this.balance = balance;
         this.balanceDescription = balanceDescription;
         this.maskedAccountNumber = maskedAccountNumber;
+        this.numberOfButtons = numberOfButtons;
     }
 
     public String getName() {
@@ -48,6 +50,14 @@ public class Account {
         this.maskedAccountNumber = maskedAccountNumber;
     }
 
+    public int getNumberOfButtons() {
+        return numberOfButtons;
+    }
+
+    public void setNumberOfButtons(int numberOfButtons) {
+        this.numberOfButtons = numberOfButtons;
+    }
+
     @Override
     public String toString() {
         return "Account{" +
@@ -55,6 +65,7 @@ public class Account {
                 ", balance=" + balance +
                 ", balanceDescription='" + balanceDescription + '\'' +
                 ", maskedAccountNumber='" + maskedAccountNumber + '\'' +
+                ", numberOfButtons=" + numberOfButtons +
                 '}';
     }
 }

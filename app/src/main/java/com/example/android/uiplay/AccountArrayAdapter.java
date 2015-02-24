@@ -2,6 +2,7 @@ package com.example.android.uiplay;
 
 import android.content.Context;
 import android.graphics.Point;
+import android.util.Log;
 import android.view.Display;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ import java.util.List;
 import java.util.Locale;
 
 class AccountArrayAdapter extends ArrayAdapter<Account> {
+    private static final String TAG = "AccountArrayAdapter";
     Context context;
 
     AccountArrayAdapter(Context context, int resource, List<Account> objects) {
@@ -35,21 +37,26 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View fragmentContent;
-        ViewHolder viewHolder;
+        AccountListFragment.ViewHolder viewHolder;
+        Account account = getItem(position);
 
-        if (convertView != null) {
-            fragmentContent = convertView;
-            viewHolder = (ViewHolder) fragmentContent.getTag();
-        } else {
+//        if (convertView != null && AccountListFragment.countVisibleFrontButtons(convertView) == account.getNumberOfButtons()) {
+//            Log.d(TAG, "reusing view: position " + position);
+//            fragmentContent = convertView;
+//            viewHolder = (AccountListFragment.ViewHolder) fragmentContent.getTag();
+//        } else {
+            Log.d(TAG, "creating new view: position " + position);
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             fragmentContent = layoutInflater.inflate(R.layout.item_row, parent, false);
-            viewHolder = new ViewHolder();
+            viewHolder = new AccountListFragment.ViewHolder();
 
             viewHolder.root = fragmentContent;
             viewHolder.parent = parent; // ListView
 
             viewHolder.pressMeBehindButton = (Button) fragmentContent.findViewById(R.id.button_below);
-            viewHolder.pressMeFrontButton = (Button) fragmentContent.findViewById(R.id.button_front);
+            viewHolder.frontButtons.add((Button) fragmentContent.findViewById(R.id.button_front_1));
+            viewHolder.frontButtons.add((Button) fragmentContent.findViewById(R.id.button_front_2));
+            viewHolder.frontButtons.add((Button) fragmentContent.findViewById(R.id.button_front_3));
             viewHolder.frontLayout = fragmentContent.findViewById(R.id.front_layout);
             viewHolder.frontButtonsContainer = (ViewGroup) fragmentContent.findViewById(R.id.front_buttons_container);
             viewHolder.initialVisibleLayout = fragmentContent.findViewById(R.id.account_details_container);
@@ -59,19 +66,19 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
             viewHolder.balanceDescription = (TextView) fragmentContent.findViewById(R.id.balance_description);
             viewHolder.balance = (TextView) fragmentContent.findViewById(R.id.balance);
             viewHolder.accountName = (TextView) fragmentContent.findViewById(R.id.account_name);
-
-            fragmentContent.setTag(viewHolder);
-        }
+//        }
 
         setupGestureDetector(viewHolder);
-        setupButtonListeners(viewHolder);
-        setupViewWidths(viewHolder);
+        setupButtons(position, viewHolder);
+        setupViewWidths(position,viewHolder);
         populateData(position, viewHolder);
+
+        fragmentContent.setTag(viewHolder);
 
         return fragmentContent;
     }
 
-    private void setupGestureDetector(ViewHolder viewHolder) {
+    private void setupGestureDetector(AccountListFragment.ViewHolder viewHolder) {
         AccountListFragment.AccountRowGestureListener gestureListener
                 = new AccountListFragment.AccountRowGestureListener(
                 context,
@@ -87,7 +94,7 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
         });
     }
 
-    private void populateData(int position, ViewHolder viewHolder) {
+    private void populateData(int position, AccountListFragment.ViewHolder viewHolder) {
         Account account = getItem(position);
 
         NumberFormat numberFormat = NumberFormat.getCurrencyInstance(Locale.US);
@@ -98,7 +105,9 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
         viewHolder.accountName.setText(account.getName());
     }
 
-    private void setupViewWidths(ViewHolder viewHolder) {
+    private void setupViewWidths(int position, AccountListFragment.ViewHolder viewHolder) {
+        Account account = getItem(position);
+
         // Here we set the width of our scrollable area, its container and the divider to be the
         // screen width plus the size of any left scrollable buttons
         WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -108,7 +117,7 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
         int displayWidth = size.x;
 
         // calculate the scrollable size
-        int fragmentContentWidth = displayWidth + ((int) context.getResources().getDimension(R.dimen.account_button_width) * viewHolder.frontButtonsContainer.getChildCount());
+        int fragmentContentWidth = displayWidth + ((int) context.getResources().getDimension(R.dimen.account_button_width) * account.getNumberOfButtons());
 
         // set the "front" views and their containers width to accommodate for the off screen buttons
         ViewGroup.LayoutParams params = viewHolder.parent.getLayoutParams();
@@ -134,45 +143,39 @@ class AccountArrayAdapter extends ArrayAdapter<Account> {
         viewHolder.behindLayout.setLayoutParams(params);
     }
 
-    private void setupButtonListeners(ViewHolder viewHolder) {
+    private void setupButtons(int position, AccountListFragment.ViewHolder viewHolder) {
+        Account account = getItem(position);
+
         final View frontLayoutFinal = viewHolder.frontLayout;
+
+        for (Button button : viewHolder.frontButtons) {
+            button.setVisibility(View.GONE);
+        }
+
+        for (int i = 0; i < account.getNumberOfButtons(); i++) {
+            viewHolder.frontButtons.get(i).setVisibility(View.VISIBLE);
+        }
 
         if (viewHolder.pressMeBehindButton != null) {
             viewHolder.pressMeBehindButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     frontLayoutFinal.animate().x(0);
-                    frontLayoutFinal.requestLayout();
+//                    frontLayoutFinal.requestLayout();
                     Toast.makeText(context, "Behind Press Me pressed", Toast.LENGTH_SHORT).show();
                 }
             });
         }
-        if (viewHolder.pressMeBehindButton != null) {
-            viewHolder.pressMeFrontButton.setOnClickListener(new View.OnClickListener() {
+
+        for (Button button : viewHolder.frontButtons) {
+            button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     frontLayoutFinal.animate().x(0);
-                    frontLayoutFinal.requestLayout();
+//                    frontLayoutFinal.requestLayout();
                     Toast.makeText(context, "Front Press Me pressed", Toast.LENGTH_SHORT).show();
                 }
             });
         }
-    }
-
-    private static class ViewHolder {
-        View root;
-        ViewGroup parent;
-
-        Button pressMeBehindButton;
-        Button pressMeFrontButton;
-        View frontLayout;
-        ViewGroup frontButtonsContainer;
-        View initialVisibleLayout;
-        View behindLayout;
-
-        TextView accountNumber;
-        TextView balanceDescription;
-        TextView balance;
-        TextView accountName;
     }
 }

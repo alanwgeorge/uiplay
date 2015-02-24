@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="button_front_1" type="id">1001</item>
+    <item name="button_front_2" type="id">1002</item>
+    <item name="button_front_3" type="id">1003</item>
+</resources>

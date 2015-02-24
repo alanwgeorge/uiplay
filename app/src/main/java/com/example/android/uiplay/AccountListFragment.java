@@ -14,10 +14,13 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.android.uiplay.model.Account;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class AccountListFragment extends ListFragment {
@@ -26,6 +29,25 @@ public class AccountListFragment extends ListFragment {
     private AccountArrayAdapter accountArrayAdapter;
 
     public AccountListFragment() { }
+
+    // TODO make number of buttons more dynamic
+    public static int countVisibleFrontButtons(View frontLayout) {
+        int visibleButtons = 0;
+
+        if (frontLayout.findViewById(R.id.button_front_1).getVisibility() == View.VISIBLE) {
+            visibleButtons++;
+        }
+
+        if (frontLayout.findViewById(R.id.button_front_2).getVisibility() == View.VISIBLE) {
+            visibleButtons++;
+        }
+
+        if (frontLayout.findViewById(R.id.button_front_3).getVisibility() == View.VISIBLE) {
+            visibleButtons++;
+        }
+
+        return visibleButtons;
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -74,26 +96,33 @@ public class AccountListFragment extends ListFragment {
 
     private void addAccountRow() {
         Random random = new Random();
-        accountArrayAdapter.add(new Account("My Account" + getListAdapter().getCount(), random.nextInt(100000000), "Available Balance", "..." + random.nextInt(10000)));
+
+        int numberOfButtons = random.nextInt(3) + 1;
+        Log.d(TAG, "numberOfButtons: "+ numberOfButtons);
+        accountArrayAdapter.add(new Account(
+                "My Account" + getListAdapter().getCount(),
+                random.nextInt(100000000),
+                "Available Balance", "..." + random.nextInt(10000),
+                numberOfButtons));
     }
 
     public static class AccountRowGestureListener implements GestureDetector.OnGestureListener {
 //        private static final String TAG = "AccountRowGestureListener";
         private float onDownFrontViewX;
-        private View view;
+        private View frontLayout;
         private ViewGroup listView;
         private Context context;
 
-        public AccountRowGestureListener(Context context, View view, ViewGroup listView) {
-            this.view = view;
+        public AccountRowGestureListener(Context context, View frontLayout, ViewGroup listView) {
+            this.frontLayout = frontLayout;
             this.context = context;
             this.listView = listView;
         }
 
         @Override
         public boolean onDown(MotionEvent e) {
-            onDownFrontViewX = view.getX();
-//        Log.d(TAG, "onDown(" + e + ") x = " + onDownFrontViewX);
+            onDownFrontViewX = frontLayout.getX();
+//            Log.d(TAG, hashCode() + ":onDown(" + e + ") x = " + onDownFrontViewX);
             return true;
         }
 
@@ -115,25 +144,25 @@ public class AccountListFragment extends ListFragment {
 
             resetOtherAccountRows();
 
-            int frontButtonWidth = (int) context.getResources().getDimension(R.dimen.account_button_width);
+            int frontButtonsWidth = (int) context.getResources().getDimension(R.dimen.account_button_width) * countVisibleFrontButtons(frontLayout);
             int belowButtonWidth = (int) context.getResources().getDimension(R.dimen.button_below_width);
             int belowButtonPadding = (int) context.getResources().getDimension(R.dimen.button_below_padding);
 
             if ((motionEvent2.getRawX() - motionEvent1.getRawX()) > 0) { // scrolling right
                 if (onDownFrontViewX == 0) {  // un-scrolled position
-                    view.animate().x(frontButtonWidth); // reveal front button
+                    frontLayout.animate().x(frontButtonsWidth); // reveal front buttons
                 } else if (onDownFrontViewX == -(belowButtonWidth + (belowButtonPadding * 2))) { // scrolled left below button visible
-                    view.animate().x(0); // return to un-scrolled position
+                    frontLayout.animate().x(0); // return to un-scrolled position
                 }
             } else { // scrolling left
                 if (onDownFrontViewX == 0) { // un-scrolled position
-                    view.animate().x(-(belowButtonWidth + (belowButtonPadding * 2))); // reveal bellow button
-                } else if (onDownFrontViewX == frontButtonWidth) { // scrolled right front button visible
-                    view.animate().x(0); // return to un-scrolled position
+                    frontLayout.animate().x(-(belowButtonWidth + (belowButtonPadding * 2))); // reveal bellow button
+                } else if (onDownFrontViewX == frontButtonsWidth) { // scrolled right front button visible
+                    frontLayout.animate().x(0); // return to un-scrolled position
                 }
             }
 
-            view.requestLayout();
+//            frontLayout.requestLayout();
 
             return true;
         }
@@ -153,11 +182,28 @@ public class AccountListFragment extends ListFragment {
             for (int i = 0; i < listView.getChildCount(); i++) {
                 ViewGroup itemView = (ViewGroup) listView.getChildAt(i);
                 View frontView = itemView.findViewById(R.id.front_layout);
-                if (frontView != view && frontView.getX() != 0) {
+                if (frontView != frontLayout && frontView.getX() != 0) {
                     frontView.animate().x(0);
                 }
             }
         }
 
+    }
+
+    public static class ViewHolder {
+        View root;
+        ViewGroup parent;
+
+        Button pressMeBehindButton;
+        List<Button> frontButtons = new ArrayList<>();
+        View frontLayout;
+        ViewGroup frontButtonsContainer;
+        View initialVisibleLayout;
+        View behindLayout;
+
+        TextView accountNumber;
+        TextView balanceDescription;
+        TextView balance;
+        TextView accountName;
     }
 }
