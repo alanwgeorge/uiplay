@@ -1,9 +1,8 @@
 package com.example.android.uiplay;
 
 import android.app.Activity;
-import android.app.ListFragment;
+import android.app.Fragment;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,15 +13,17 @@ import android.view.ViewGroup;
 
 import com.example.android.uiplay.model.Account;
 
-import java.util.ArrayList;
 import java.util.Random;
 
-public class AccountListFragment extends ListFragment {
-    private static final String TAG = "AccountListFragment";
+/**
+ * A placeholder fragment containing a simple view.
+ */
+public class AccountListFragment2 extends Fragment {
+    private static final String TAG = "AccountListFragment2";
 
-    private AccountArrayAdapter accountArrayAdapter;
+    private ViewGroup fragmentContainer;
 
-    public AccountListFragment() { }
+    public AccountListFragment2() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,8 @@ public class AccountListFragment extends ListFragment {
 
         switch (id) {
             case R.id.action_add_item:
-                addAccountRow();
+                Log.d(TAG, "add item menu selected");
+                addAccountRow(fragmentContainer);
                 break;
         }
 
@@ -51,13 +53,11 @@ public class AccountListFragment extends ListFragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main2, container, false);
+        fragmentContainer = (ViewGroup) rootView.findViewById(R.id.fragment_container);
 
-        accountArrayAdapter = new AccountArrayAdapter(getActivity(), 0, new ArrayList<Account>());
-        setListAdapter(accountArrayAdapter);
-        accountArrayAdapter.setNotifyOnChange(true);
-        addAccountRow();
+        addAccountRow(fragmentContainer);
 
         return rootView;
     }
@@ -69,16 +69,16 @@ public class AccountListFragment extends ListFragment {
                 getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 
-    private void addAccountRow() {
-        Random random = new Random();
+    private void addAccountRow(ViewGroup container) {
+        View fragmentContent = getActivity().getLayoutInflater().inflate(R.layout.item_row2, container, false);
 
-        int numberOfButtons = random.nextInt(3) + 1;
-        Log.d(TAG, "numberOfButtons: "+ numberOfButtons);
-        accountArrayAdapter.add(new Account(
-                "My Account" + getListAdapter().getCount(),
+        Random random = new Random();
+        Account account = new Account(
+                "My Account" + container.getChildCount(),
                 random.nextInt(100000000),
                 "Available Balance", "..." + random.nextInt(10000),
-                numberOfButtons));
-    }
+                random.nextInt(3) + 1);
 
+        container.addView(AccountArrayAdapter.setupAccountRow(fragmentContent, account, null, container));
+    }
 }

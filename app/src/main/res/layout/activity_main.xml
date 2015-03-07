@@ -5,7 +5,6 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="right"
     tools:context="com.example.android.uiplay.DrawerActivity"
     tools:ignore="RtlHardcoded">
 
@@ -26,7 +25,7 @@
     <fragment android:id="@+id/navigation_drawer"
               android:layout_width="@dimen/navigation_drawer_width"
               android:layout_height="match_parent"
-              android:layout_gravity="right"
+              android:layout_gravity="left"
               android:name="com.example.android.uiplay.NavigationDrawerFragment"
               tools:layout="@layout/fragment_navigation_drawer"/>
 
