@@ -39,6 +39,9 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
         switch (position) {
             case 0:
+                fragment = new AccountListFragment2();
+                break;
+            case 1:
                 fragment = new AccountListFragment();
                 break;
             default:
