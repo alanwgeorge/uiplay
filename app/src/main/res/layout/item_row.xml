@@ -102,10 +102,10 @@
                 style="@style/AppTheme.TextAppearance.Medium"
                 tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:id="@+id/corner_indicator"
-                android:background="@drawable/corner_alert_icon"
+                android:background="@drawable/corner_alert_vector"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"

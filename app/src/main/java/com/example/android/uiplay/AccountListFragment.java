@@ -151,7 +151,7 @@ public class AccountListFragment extends ListFragment {
             if ((motionEvent2.getRawX() - motionEvent1.getRawX()) > 0) { // scrolling right
                 if (onDownFrontViewX == 0) {  // un-scrolled position
                     frontLayout.animate().x(frontButtonsWidth); // reveal front buttons
-                } else if (onDownFrontViewX == -(belowButtonWidth + (belowButtonPadding * 2))) { // scrolled left below button visible
+                } else if (onDownFrontViewX == -(belowButtonWidth + (belowButtonPadding * 2))) { // scrolled left below button is visible
                     frontLayout.animate().x(0); // return to un-scrolled position
                 }
             } else { // scrolling left
@@ -161,8 +161,6 @@ public class AccountListFragment extends ListFragment {
                     frontLayout.animate().x(0); // return to un-scrolled position
                 }
             }
-
-//            frontLayout.requestLayout();
 
             return true;
         }
@@ -180,10 +178,10 @@ public class AccountListFragment extends ListFragment {
 
         private void resetOtherAccountRows() {
             for (int i = 0; i < listView.getChildCount(); i++) {
-                ViewGroup itemView = (ViewGroup) listView.getChildAt(i);
-                View frontView = itemView.findViewById(R.id.front_layout);
-                if (frontView != frontLayout && frontView.getX() != 0) {
-                    frontView.animate().x(0);
+                ViewGroup accountRow = (ViewGroup) listView.getChildAt(i);
+                View frontLayout = accountRow.findViewById(R.id.front_layout);
+                if (frontLayout != this.frontLayout && frontLayout.getX() != 0) {
+                    frontLayout.animate().x(0);
                 }
             }
         }
@@ -191,8 +189,9 @@ public class AccountListFragment extends ListFragment {
     }
 
     public static class ViewHolder {
-        View root;
-        ViewGroup parent;
+        Account account;
+        View accountRowItem;
+        ViewGroup parentListView;
 
         Button pressMeBehindButton;
         List<Button> frontButtons = new ArrayList<>();
