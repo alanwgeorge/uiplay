@@ -6,7 +6,6 @@
     android:layout_height="@dimen/account_item_height"
     android:id="@+id/account_row_content"
     android:layout_gravity="end"
-    android:gravity="end"
     android:orientation="vertical">
 
     <View android:layout_width="@dimen/account_item_width"
@@ -114,7 +113,7 @@
                 android:layout_width="20dp"
                 android:layout_height="20dp"
                 android:id="@+id/corner_indicator"
-                android:background="@drawable/corner_alert_vector"
+                android:background="@drawable/corner_alert_icon"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"
