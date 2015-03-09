@@ -1,4 +1,4 @@
-package com.example.android.uiplay;
+package com.example.android.uiplay.v2;
 
 import android.app.Activity;
 import android.app.ListFragment;
@@ -12,6 +12,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.android.uiplay.MainActivity;
+import com.example.android.uiplay.R;
 import com.example.android.uiplay.model.Account;
 
 import java.util.ArrayList;
@@ -52,7 +54,7 @@ public class AccountListFragment extends ListFragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_account_list_listview, container, false);
 
         accountArrayAdapter = new AccountArrayAdapter(getActivity(), 0, new ArrayList<Account>());
         setListAdapter(accountArrayAdapter);

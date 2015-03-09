@@ -4,9 +4,7 @@
              android:layout_width="match_parent"
              android:layout_height="match_parent"
              android:background="@color/secondary_1_1"
-             android:layout_gravity="end"
-             android:gravity="end"
-             tools:context=".AccountListFragment"
+             tools:context=".v2.AccountListFragment"
              android:orientation="vertical">
 
     <ListView android:layout_width="match_parent"
@@ -14,7 +12,7 @@
               android:divider="@color/secondary_2_3"
               android:dividerHeight="1dp"
               android:layout_gravity="end"
-              tools:listitem="@layout/item_row"
+              tools:listitem="@layout/account_row"
               android:id="@android:id/list"/>
 
     <TextView
