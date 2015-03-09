@@ -45,7 +45,7 @@ public class AccountRowGestureListener implements GestureDetector.OnGestureListe
 
         resetOtherAccountRows();
 
-        int frontButtonsWidth = (int) context.getResources().getDimension(R.dimen.account_button_width) * AccountArrayAdapter.countVisibleFrontButtons(frontLayout);
+        int frontButtonsWidth = (int) context.getResources().getDimension(R.dimen.account_button_width) * AccountRowBuilder.countVisibleFrontButtons(frontLayout);
         int belowButtonWidth = (int) context.getResources().getDimension(R.dimen.button_below_width);
         int belowButtonPadding = (int) context.getResources().getDimension(R.dimen.button_below_padding);
 

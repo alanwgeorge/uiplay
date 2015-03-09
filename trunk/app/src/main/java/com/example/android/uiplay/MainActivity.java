@@ -7,11 +7,9 @@ import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+
 
 public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private static final String TAG = "MainActivity";
@@ -39,13 +37,13 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
         switch (position) {
             case 0:
-                fragment = new AccountListFragment2();
+                fragment = new com.example.android.uiplay.v1.AccountListFragment();
                 break;
             case 1:
-                fragment = new AccountListFragment();
+                fragment = new com.example.android.uiplay.v2.AccountListFragment();
                 break;
             default:
-                fragment = new PlaceholderFragment();
+                fragment = new com.example.android.uiplay.v3.AccountListFragment();
         }
 
         Bundle args = new Bundle();
@@ -91,21 +89,4 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
     }
-
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() { }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.fragment_placeholder, container, false);
-        }
-
-        @Override
-        public void onAttach(Activity activity) {
-            super.onAttach(activity);
-            ((MainActivity) activity).onSectionAttached(getArguments().getInt(ARG_SECTION_NUMBER));
-        }
-    }
-
 }

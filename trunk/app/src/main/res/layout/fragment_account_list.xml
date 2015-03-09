@@ -5,7 +5,7 @@
              android:layout_height="match_parent"
              android:id="@+id/base_scrollview"
              android:background="@color/secondary_1_1"
-             tools:context=".AccountListFragment2">
+             tools:context=".v1.AccountListFragment">
 
     <LinearLayout android:layout_width="match_parent"
                   android:layout_height="wrap_content"

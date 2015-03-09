@@ -1,4 +1,4 @@
-package com.example.android.uiplay;
+package com.example.android.uiplay.v1;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -11,6 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.android.uiplay.AccountRowBuilder;
+import com.example.android.uiplay.MainActivity;
+import com.example.android.uiplay.R;
 import com.example.android.uiplay.model.Account;
 
 import java.util.Random;
@@ -18,12 +21,12 @@ import java.util.Random;
 /**
  * A placeholder fragment containing a simple view.
  */
-public class AccountListFragment2 extends Fragment {
+public class AccountListFragment extends Fragment {
     private static final String TAG = "AccountListFragment2";
 
     private ViewGroup fragmentContainer;
 
-    public AccountListFragment2() { }
+    public AccountListFragment() { }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +57,7 @@ public class AccountListFragment2 extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_main2, container, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_account_list, container, false);
         fragmentContainer = (ViewGroup) rootView.findViewById(R.id.fragment_container);
 
         addAccountRow(fragmentContainer);
@@ -70,7 +73,7 @@ public class AccountListFragment2 extends Fragment {
     }
 
     private void addAccountRow(ViewGroup container) {
-        View fragmentContent = getActivity().getLayoutInflater().inflate(R.layout.item_row2, container, false);
+        View fragmentContent = getActivity().getLayoutInflater().inflate(R.layout.account_row, container, false);
 
         Random random = new Random();
         Account account = new Account(
@@ -79,6 +82,6 @@ public class AccountListFragment2 extends Fragment {
                 "Available Balance", "..." + random.nextInt(10000),
                 random.nextInt(3) + 1);
 
-        container.addView(AccountArrayAdapter.setupAccountRow(fragmentContent, account, null, container));
+        container.addView(AccountRowBuilder.setupAccountRow(fragmentContent, account, null, container));
     }
 }
