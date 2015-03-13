@@ -1,0 +1,87 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             tools:context="com.example.android.uiplay.v5.ViewPagerFragment">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="204dp"
+        android:layout_gravity="bottom"
+        android:id="@+id/pager_container"
+        android:background="@color/secondary_2_0">
+
+        <android.support.v4.view.ViewPager
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:id="@+id/pager">
+        </android.support.v4.view.ViewPager>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:id="@+id/pager_page_indicator_container">
+            <RadioButton
+                android:layout_width="@dimen/pager_page_indicator_width"
+                android:layout_height="@dimen/pager_page_indicator_height"
+                android:layout_margin="5dp"
+                android:background="@drawable/pager_page_indicator_selector"
+                android:button="@android:color/transparent"
+                android:id="@+id/pager_page_indicator1"
+                android:checked="true"/>
+            <RadioButton
+                android:layout_width="@dimen/pager_page_indicator_width"
+                android:layout_height="@dimen/pager_page_indicator_height"
+                android:layout_margin="5dp"
+                android:background="@drawable/pager_page_indicator_selector"
+                android:button="@android:color/transparent"
+                android:id="@+id/pager_page_indicator2"/>
+        </RadioGroup>
+
+        <ImageButton
+            android:layout_width="15dp"
+            android:layout_height="50dp"
+            android:background="@drawable/transparent_glass_arrow_left"
+            android:id="@+id/offer_nav_left"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginLeft="20dp"
+            android:contentDescription="offer arrow left"
+            tools:ignore="HardcodedText"/>
+
+        <ImageButton
+            android:layout_width="15dp"
+            android:layout_height="50dp"
+            android:background="@drawable/transparent_glass_arrow_right"
+            android:id="@+id/offer_nav_right"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:contentDescription="offer arrow left"
+            tools:ignore="HardcodedText"/>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/imageView"
+        android:layout_marginBottom="162dp"
+        android:background="@drawable/offer_image_background"
+        android:layout_gravity="center|bottom"
+        android:contentDescription="offer image background"
+        tools:ignore="HardcodedText"/>
+
+</FrameLayout>

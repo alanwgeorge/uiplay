@@ -1,9 +1,8 @@
-package com.example.android.uiplay.v2;
+package com.example.android.uiplay.v4;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -14,15 +13,9 @@ import android.view.ViewGroup;
 
 import com.example.android.uiplay.MainActivity;
 import com.example.android.uiplay.R;
-import com.example.android.uiplay.model.Account;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-public class AccountListFragment extends ListFragment {
+public class AccountListFragment extends Fragment {
     private static final String TAG = "AccountListFragment";
-
-    private AccountArrayAdapter accountArrayAdapter;
 
     public AccountListFragment() { }
 
@@ -45,7 +38,7 @@ public class AccountListFragment extends ListFragment {
 
         switch (id) {
             case R.id.action_add_item:
-                addAccountRow();
+                Log.d(TAG, "add item menu selected");
                 break;
         }
 
@@ -53,13 +46,8 @@ public class AccountListFragment extends ListFragment {
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_account_list_listview, container, false);
-
-        accountArrayAdapter = new AccountArrayAdapter(getActivity(), 0, new ArrayList<Account>());
-        setListAdapter(accountArrayAdapter);
-        accountArrayAdapter.setNotifyOnChange(true);
-        addAccountRow();
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.account_row_custom, container, false);
 
         return rootView;
     }
@@ -70,17 +58,4 @@ public class AccountListFragment extends ListFragment {
         ((MainActivity) activity).onSectionAttached(
                 getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
-
-    private void addAccountRow() {
-        Random random = new Random();
-
-        int numberOfButtons = random.nextInt(3) + 1;
-        Log.d(TAG, "numberOfButtons: "+ numberOfButtons);
-        accountArrayAdapter.add(new Account(
-                "My Account" + getListAdapter().getCount(),
-                random.nextInt(100000000),
-                "Available Balance", "..." + random.nextInt(10000),
-                numberOfButtons));
-    }
-
 }

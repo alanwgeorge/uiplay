@@ -2,8 +2,8 @@ package com.example.android.uiplay.v3;
 
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +29,7 @@ public class AccountListFragment extends Fragment {
     private RecyclerView recyclerView;
     private AccountAdapter accountAdapter;
     private LinearLayoutManager linearLayoutManager;
+    private AccountAdapterDataObserver accountAdapterDataObserver;
 
     public AccountListFragment() {
         // Required empty public constructor
@@ -68,7 +69,10 @@ public class AccountListFragment extends Fragment {
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         accountAdapter = new AccountAdapter();
+        accountAdapterDataObserver = new AccountAdapterDataObserver();
+        accountAdapter.registerAdapterDataObserver(accountAdapterDataObserver);
         recyclerView.setAdapter(accountAdapter);
+        accountAdapterDataObserver = new AccountAdapterDataObserver();
 
         addAccountRow();
 

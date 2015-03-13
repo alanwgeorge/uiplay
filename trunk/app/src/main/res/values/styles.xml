@@ -1,8 +1,9 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="android:Theme.Holo.Light">
+    <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
+        <item name="android:activatedBackgroundIndicator">@drawable/navigation_menu_item_background_selector</item>
     </style>
 
     <style name="AppTheme.BaseButton">
