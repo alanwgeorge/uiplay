@@ -1,8 +1,8 @@
 package com.example.android.uiplay.v1;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +22,7 @@ import java.util.Random;
  * A placeholder fragment containing a simple view.
  */
 public class AccountListFragment extends Fragment {
-    private static final String TAG = "AccountListFragment2";
+    private static final String TAG = "AccountListFragment";
 
     private ViewGroup fragmentContainer;
 

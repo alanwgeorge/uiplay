@@ -18,21 +18,15 @@ public class AccountRowFrontRelativeLayout extends RelativeLayout implements Ges
     private float onDownFrontViewX;
 
     public AccountRowFrontRelativeLayout(Context context) {
-        super(context);
-        init(context);
+        this(context, null);
     }
 
     public AccountRowFrontRelativeLayout(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init(context);
+        this(context, attrs, 0);
     }
 
     public AccountRowFrontRelativeLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
-    }
-
-    private void init(Context context) {
         gestureDetector = new GestureDetectorCompat(context, this);
     }
 

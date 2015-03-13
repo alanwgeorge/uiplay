@@ -42,7 +42,6 @@ public class AccountRowViewHolder extends RecyclerView.ViewHolder {
         behindLayout = accountRowItem.findViewById(R.id.behind_layout);
         divider = accountRowItem.findViewById(R.id.account_list_divider);
 
-
         accountNumber = (TextView) accountRowItem.findViewById(R.id.account_number);
         balanceDescription = (TextView) accountRowItem.findViewById(R.id.balance_description);
         balance = (TextView) accountRowItem.findViewById(R.id.balance);

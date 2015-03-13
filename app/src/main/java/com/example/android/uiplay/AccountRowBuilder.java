@@ -72,15 +72,18 @@ public class AccountRowBuilder {
     public static int countVisibleFrontButtons(View frontLayout) {
         int visibleButtons = 0;
 
-        if (frontLayout.findViewById(R.id.button_front_1).getVisibility() == View.VISIBLE) {
+        if (frontLayout.findViewById(R.id.button_front_1) != null &&
+                frontLayout.findViewById(R.id.button_front_1).getVisibility() == View.VISIBLE) {
             visibleButtons++;
         }
 
-        if (frontLayout.findViewById(R.id.button_front_2).getVisibility() == View.VISIBLE) {
+        if (frontLayout.findViewById(R.id.button_front_2) != null &&
+                frontLayout.findViewById(R.id.button_front_2).getVisibility() == View.VISIBLE) {
             visibleButtons++;
         }
 
-        if (frontLayout.findViewById(R.id.button_front_3).getVisibility() == View.VISIBLE) {
+        if (frontLayout.findViewById(R.id.button_front_3) != null &&
+                frontLayout.findViewById(R.id.button_front_3).getVisibility() == View.VISIBLE) {
             visibleButtons++;
         }
 
@@ -162,11 +165,15 @@ public class AccountRowBuilder {
         final View frontLayoutFinal = viewHolder.frontLayout;
 
         for (Button button : viewHolder.frontButtons) {
-            button.setVisibility(View.GONE);
+            if (button != null) {
+                button.setVisibility(View.GONE);
+            }
         }
 
         for (int i = 0; i < viewHolder.account.getNumberOfButtons(); i++) {
-            viewHolder.frontButtons.get(i).setVisibility(View.VISIBLE);
+            if (viewHolder.frontButtons.get(i) != null) {
+                viewHolder.frontButtons.get(i).setVisibility(View.VISIBLE);
+            }
         }
 
         if (viewHolder.pressMeBehindButton != null) {
@@ -180,13 +187,15 @@ public class AccountRowBuilder {
         }
 
         for (Button button : viewHolder.frontButtons) {
-            button.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    frontLayoutFinal.animate().x(0);
-                    Toast.makeText(App.context, "Front Press Me pressed", Toast.LENGTH_SHORT).show();
-                }
-            });
+            if (button != null) {
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        frontLayoutFinal.animate().x(0);
+                        Toast.makeText(App.context, "Front Press Me pressed", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
         }
     }
 }

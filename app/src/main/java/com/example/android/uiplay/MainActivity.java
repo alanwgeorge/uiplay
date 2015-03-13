@@ -1,17 +1,20 @@
 package com.example.android.uiplay;
 
-import android.app.ActionBar;
-import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
+
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.android.uiplay.v5.ViewPagerFragment;
 
-public class MainActivity extends Activity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
+
+public class MainActivity extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
     private static final String TAG = "MainActivity";
     public static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -24,7 +27,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        navigationDrawerFragment = (NavigationDrawerFragment) getFragmentManager().findFragmentById(R.id.navigation_drawer);
+        navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
         title = getTitle();
 
         navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
@@ -32,7 +35,7 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
 
     @Override
     public void onNavigationDrawerItemSelected(int position) {
-        FragmentManager fragmentManager = getFragmentManager();
+        FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment;
 
         switch (position) {
@@ -42,8 +45,17 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             case 1:
                 fragment = new com.example.android.uiplay.v2.AccountListFragment();
                 break;
-            default:
+            case 2:
                 fragment = new com.example.android.uiplay.v3.AccountListFragment();
+                break;
+            case 3:
+                fragment = new com.example.android.uiplay.v4.AccountListFragment();
+                break;
+            case 4:
+                fragment = new ViewPagerFragment();
+                break;
+            default:
+                fragment = new com.example.android.uiplay.v1.AccountListFragment();
         }
 
         Bundle args = new Bundle();
@@ -64,11 +76,17 @@ public class MainActivity extends Activity implements NavigationDrawerFragment.N
             case 3:
                 title = getString(R.string.title_section3);
                 break;
+            case 4:
+                title = getString(R.string.title_section4);
+                break;
+            case 5:
+                title = getString(R.string.title_section5);
+                break;
         }
     }
 
     public void restoreActionBar() {
-        ActionBar actionBar = getActionBar();
+        ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(title);
