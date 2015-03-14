@@ -36,7 +36,6 @@ public class ViewPagerFragment extends Fragment implements ViewPager.OnPageChang
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_view_pager, container, false);
 
-        // test
         page1Indicator = (RadioButton) rootView.findViewById(R.id.pager_page_indicator1);
         page2Indicator = (RadioButton) rootView.findViewById(R.id.pager_page_indicator2);
 
