@@ -3,7 +3,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
-        <item name="android:activatedBackgroundIndicator">@drawable/navigation_menu_item_background_selector</item>
     </style>
 
     <style name="AppTheme.BaseButton">
@@ -37,6 +36,16 @@
 
     <style name="AppTheme.TextAppearance.Small" parent="AppTheme.TextAppearance">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Offer.Medium" parent="AppTheme.TextAppearance.Medium">
+        <item name="android:textSize">17sp</item>
+        <item name="android:textColor">@color/secondary_2_1</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Offer.Small" parent="AppTheme.TextAppearance.Small">
+        <item name="android:textSize">13sp</item>
+        <item name="android:textColor">@color/secondary_2_1</item>
     </style>
 
 </resources>
