@@ -103,6 +103,12 @@ public class ViewPagerFragment extends Fragment implements ViewPager.OnPageChang
         switch (state) {
             case ViewPager.SCROLL_STATE_IDLE:
                 Log.d(TAG, "onPageScrollStateChanged(SCROLL_STATE_IDLE)");
+                break;
+            case ViewPager.SCROLL_STATE_DRAGGING:
+                Log.d(TAG, "onPageScrollStateChanged(SCROLL_STATE_DRAGGING)");
+                break;
+            case ViewPager.SCROLL_STATE_SETTLING:
+                Log.d(TAG, "onPageScrollStateChanged(SCROLL_STATE_SETTLING)");
                 if (page1Indicator != null && page2Indicator != null) {
                     if (offerToast != null) offerToast.cancel();
                     String message = null;
@@ -125,12 +131,6 @@ public class ViewPagerFragment extends Fragment implements ViewPager.OnPageChang
 
                     offerToast.show();
                 }
-                break;
-            case ViewPager.SCROLL_STATE_DRAGGING:
-                Log.d(TAG, "onPageScrollStateChanged(SCROLL_STATE_DRAGGING)");
-                break;
-            case ViewPager.SCROLL_STATE_SETTLING:
-                Log.d(TAG, "onPageScrollStateChanged(SCROLL_STATE_SETTLING)");
                 break;
         }
     }
