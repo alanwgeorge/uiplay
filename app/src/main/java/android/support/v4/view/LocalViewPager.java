@@ -17,9 +17,9 @@ public class LocalViewPager extends ViewPager {
     @Override
     void setCurrentItemInternal(int item, boolean smoothScroll, boolean always) {
         if (smoothScroll) {
-            super.setCurrentItemInternal(item, smoothScroll, always, 1);
+            super.setCurrentItemInternal(item, true, always, 1);
         } else {
-            super.setCurrentItemInternal(item, smoothScroll, always, 0);
+            super.setCurrentItemInternal(item, false, always, 0);
         }
     }
 }
