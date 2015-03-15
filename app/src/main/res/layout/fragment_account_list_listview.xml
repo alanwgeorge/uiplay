@@ -12,6 +12,8 @@
               android:divider="@color/secondary_2_3"
               android:dividerHeight="1dp"
               android:layout_gravity="end"
+              android:stackFromBottom="true"
+              android:transcriptMode="alwaysScroll"
               tools:listitem="@layout/account_row"
               android:id="@android:id/list"/>
 
