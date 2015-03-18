@@ -24,6 +24,4 @@ public class AccountRowView extends View {
 //        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         setMeasuredDimension(200, 200);
     }
-
-
 }

@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/account_item_width"
+    android:layout_width="match_parent"
     android:layout_height="@dimen/account_item_height"
     android:id="@+id/account_row_content"
     android:layout_gravity="end"
+    android:gravity="end"
     android:orientation="vertical">
 
-    <View android:layout_width="@dimen/account_item_width"
+    <View android:layout_width="match_parent"
           android:layout_height="1dp"
           android:id="@+id/account_list_divider"
           android:background="@color/secondary_2_3"/>
 
     <RelativeLayout
-        android:layout_width="@dimen/account_item_width"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/account_item_height"
         android:id="@+id/behind_layout"
         android:padding="@dimen/button_below_padding"
-        android:layout_below="@id/account_list_divider"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:visibility="visible"
         android:background="@color/primary_2">
         <Button
@@ -38,10 +36,8 @@
     <RelativeLayout
         android:layout_width="@dimen/account_item_width"
         android:layout_height="@dimen/account_item_height"
+        android:layout_marginTop="-75dp"
         android:id="@+id/front_layout"
-        android:layout_below="@id/account_list_divider"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:visibility="visible">
 
         <RelativeLayout
@@ -156,4 +152,4 @@
                 tools:ignore="HardcodedText"/>
         </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>

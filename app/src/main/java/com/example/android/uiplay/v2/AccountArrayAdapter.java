@@ -43,6 +43,6 @@ public class AccountArrayAdapter extends ArrayAdapter<Account> {
             accountRowItem = layoutInflater.inflate(R.layout.account_row, parent, false);
         }
 
-        return AccountRowBuilder.setupAccountRow(accountRowItem, account, viewHolder, parent);
+        return AccountRowBuilder.setupAccountRow(accountRowItem.findViewById(R.id.account_row_content), account, viewHolder, parent);
     }
 }

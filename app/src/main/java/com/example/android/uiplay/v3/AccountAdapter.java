@@ -39,6 +39,8 @@ public class AccountAdapter extends RecyclerView.Adapter<AccountRowViewHolder> {
         AccountRowViewHolder accountRowViewHolder = new AccountRowViewHolder(view);
         accountRowViewHolder.parent = parent;
 
+        view.setTag(accountRowViewHolder);
+
         return accountRowViewHolder;
     }
 

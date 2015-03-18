@@ -26,13 +26,13 @@ public class AccountRowBuilder {
     public static View setupAccountRow(@NonNull View accountRowItem,
                                 @NonNull Account account,
                                 @Nullable AccountRowViewHolder viewHolder,
-                                @NonNull ViewGroup parent) {
+                                @NonNull ViewGroup listView) {
 
         if (viewHolder == null) {
             viewHolder = new AccountRowViewHolder(accountRowItem);
 
             viewHolder.accountRowItem = accountRowItem;
-            viewHolder.parent = parent; // the ListView
+            viewHolder.parent = listView;
 
             viewHolder.pressMeBehindButton = (Button) accountRowItem.findViewById(R.id.button_below);
             viewHolder.frontButtons.add((Button) accountRowItem.findViewById(R.id.button_front_1));
@@ -50,7 +50,7 @@ public class AccountRowBuilder {
             viewHolder.balance = (TextView) accountRowItem.findViewById(R.id.balance);
             viewHolder.accountName = (TextView) accountRowItem.findViewById(R.id.account_name);
 
-            if (viewHolder.divider != null && parent instanceof ListView) { // ListView has builtin divider
+            if (viewHolder.divider != null && listView instanceof ListView) { // ListView has builtin divider
                 viewHolder.divider.setVisibility(View.GONE);
             }
         }
@@ -61,7 +61,6 @@ public class AccountRowBuilder {
         setupButtons(viewHolder);
         setupViewWidths(viewHolder);
         populateData(viewHolder);
-
 
         accountRowItem.setTag(viewHolder);
 
@@ -125,19 +124,13 @@ public class AccountRowBuilder {
         int displayWidth = size.x;
 
         // calculate the scrollable size
-        int fragmentContentWidth = displayWidth + ((int) App.context.getResources().getDimension(R.dimen.account_button_width) * viewHolder.account.getNumberOfButtons());
+        int frontLayoutWidth = displayWidth + ((int) App.context.getResources().getDimension(R.dimen.account_button_width) * AccountRowBuilder.countVisibleFrontButtons(viewHolder.frontLayout));
 
         // set the "front" views and their containers width to accommodate for the off screen buttons
-        ViewGroup.LayoutParams params = viewHolder.parent.getLayoutParams();
-        params.width = fragmentContentWidth;
-        viewHolder.parent.setLayoutParams(params);
-
-        params = viewHolder.accountRowItem.getLayoutParams();
-        params.width = fragmentContentWidth;
-        viewHolder.accountRowItem.setLayoutParams(params);
+        ViewGroup.LayoutParams params;
 
         params = viewHolder.frontLayout.getLayoutParams();
-        params.width = fragmentContentWidth;
+        params.width = frontLayoutWidth;
         viewHolder.frontLayout.setLayoutParams(params);
 
         if (viewHolder.divider != null) {
@@ -145,9 +138,6 @@ public class AccountRowBuilder {
             if (viewHolder.parent.getChildCount() == 0) {
                 viewHolder.divider.setVisibility(View.GONE);
             }
-            params = viewHolder.divider.getLayoutParams();
-            params.width = fragmentContentWidth;
-            viewHolder.divider.setLayoutParams(params);
         }
 
         // Here we adjust the width of the initially visible part of our layout and the behind/hidden part to
@@ -155,14 +145,9 @@ public class AccountRowBuilder {
         params = viewHolder.initialVisibleLayout.getLayoutParams();
         params.width = displayWidth;
         viewHolder.initialVisibleLayout.setLayoutParams(params);
-
-        params = viewHolder.behindLayout.getLayoutParams();
-        params.width = displayWidth;
-        viewHolder.behindLayout.setLayoutParams(params);
     }
 
-    public static void setupButtons(AccountRowViewHolder viewHolder) {
-        final View frontLayoutFinal = viewHolder.frontLayout;
+    public static void setupButtons(final AccountRowViewHolder viewHolder) {
 
         for (Button button : viewHolder.frontButtons) {
             if (button != null) {
@@ -180,7 +165,7 @@ public class AccountRowBuilder {
             viewHolder.pressMeBehindButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    frontLayoutFinal.animate().x(0);
+                    viewHolder.frontLayout.animate().x(getUnscrolledX(viewHolder));
                     Toast.makeText(App.context, "Behind Press Me pressed", Toast.LENGTH_SHORT).show();
                 }
             });
@@ -191,11 +176,15 @@ public class AccountRowBuilder {
                 button.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        frontLayoutFinal.animate().x(0);
+                        viewHolder.frontLayout.animate().x(getUnscrolledX(viewHolder));
                         Toast.makeText(App.context, "Front Press Me pressed", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         }
+    }
+
+    public static int getUnscrolledX(AccountRowViewHolder viewHolder) {
+        return -((int) App.context.getResources().getDimension(R.dimen.account_button_width) * AccountRowBuilder.countVisibleFrontButtons(viewHolder.frontLayout));
     }
 }

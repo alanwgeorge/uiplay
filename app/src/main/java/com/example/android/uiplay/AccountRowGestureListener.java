@@ -40,9 +40,6 @@ public class AccountRowGestureListener implements GestureDetector.OnGestureListe
 
     @Override
     public boolean onScroll(MotionEvent motionEvent1, MotionEvent motionEvent2, float distanceX, float distanceY) {
-//        Log.d(TAG, "onScroll(" + motionEvent1 + ", " + motionEvent2 + ", " + distanceX + ", " + distanceY + ")");
-//        Log.d(TAG, "getX() = " + getX());
-
         resetOtherAccountRows();
 
         int frontButtonsWidth = (int) context.getResources().getDimension(R.dimen.account_button_width) * AccountRowBuilder.countVisibleFrontButtons(frontLayout);
@@ -50,16 +47,16 @@ public class AccountRowGestureListener implements GestureDetector.OnGestureListe
         int belowButtonPadding = (int) context.getResources().getDimension(R.dimen.button_below_padding);
 
         if ((motionEvent2.getRawX() - motionEvent1.getRawX()) > 0) { // scrolling right
-            if (onDownFrontViewX == 0) {  // un-scrolled position
-                frontLayout.animate().x(frontButtonsWidth); // reveal front buttons
-            } else if (onDownFrontViewX == -(belowButtonWidth + (belowButtonPadding * 2))) { // scrolled left below button is visible
-                frontLayout.animate().x(0); // return to un-scrolled position
+            if (onDownFrontViewX == -frontButtonsWidth) {  // un-scrolled position
+                frontLayout.animate().x(0); // reveal front buttons
+            } else if (onDownFrontViewX == -(frontButtonsWidth + belowButtonWidth + (belowButtonPadding * 2))) { // scrolled left below button is visible
+                frontLayout.animate().x(-frontButtonsWidth); // return to un-scrolled position
             }
         } else { // scrolling left
-            if (onDownFrontViewX == 0) { // un-scrolled position
-                frontLayout.animate().x(-(belowButtonWidth + (belowButtonPadding * 2))); // reveal bellow button
-            } else if (onDownFrontViewX == frontButtonsWidth) { // scrolled right front button visible
-                frontLayout.animate().x(0); // return to un-scrolled position
+            if (onDownFrontViewX == -frontButtonsWidth) { // un-scrolled position
+                frontLayout.animate().x(-(frontButtonsWidth + belowButtonWidth + (belowButtonPadding * 2))); // reveal bellow button
+            } else if (onDownFrontViewX == 0) { // scrolled right front button visible
+                frontLayout.animate().x(-frontButtonsWidth); // return to un-scrolled position
             }
         }
 
@@ -81,8 +78,9 @@ public class AccountRowGestureListener implements GestureDetector.OnGestureListe
         for (int i = 0; i < listView.getChildCount(); i++) {
             ViewGroup accountRow = (ViewGroup) listView.getChildAt(i);
             View frontLayout = accountRow.findViewById(R.id.front_layout);
-            if (frontLayout != this.frontLayout && frontLayout.getX() != 0) {
-                frontLayout.animate().x(0);
+            if (frontLayout != this.frontLayout) {
+//                frontLayout.animate().x(-((int) context.getResources().getDimension(R.dimen.account_button_width) * AccountRowBuilder.countVisibleFrontButtons(frontLayout)));
+                frontLayout.animate().x(AccountRowBuilder.getUnscrolledX((AccountRowViewHolder) accountRow.getTag()));
             }
         }
     }

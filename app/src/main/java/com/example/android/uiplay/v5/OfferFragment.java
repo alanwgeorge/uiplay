@@ -42,11 +42,12 @@ public class OfferFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_view_page, container, false);
+        final View view = inflater.inflate(R.layout.fragment_view_page, container, false);
 
         TextView messageMajorTextView = (TextView) view.findViewById(R.id.message_major);
         TextView messageMinorTextView = (TextView) view.findViewById(R.id.message_minor);
         Button offerButton = (Button) view.findViewById(R.id.offer_button);
+
 
         if (messageMajor != null) {
             messageMajorTextView.setText(messageMajor);

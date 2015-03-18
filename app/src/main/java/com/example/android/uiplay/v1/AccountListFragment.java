@@ -10,6 +10,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 
 import com.example.android.uiplay.AccountRowBuilder;
 import com.example.android.uiplay.MainActivity;
@@ -25,6 +26,7 @@ public class AccountListFragment extends Fragment {
     private static final String TAG = "AccountListFragment";
 
     private ViewGroup fragmentContainer;
+    private ScrollView scrollView;
 
     public AccountListFragment() { }
 
@@ -59,6 +61,7 @@ public class AccountListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_account_list, container, false);
         fragmentContainer = (ViewGroup) rootView.findViewById(R.id.fragment_container);
+        scrollView = (ScrollView) rootView.findViewById(R.id.base_scrollview);
 
         addAccountRow(fragmentContainer);
 
@@ -83,5 +86,11 @@ public class AccountListFragment extends Fragment {
                 random.nextInt(3) + 1);
 
         container.addView(AccountRowBuilder.setupAccountRow(fragmentContent, account, null, container));
+        container.post(new Runnable() {
+            @Override
+            public void run() {
+                scrollView.fullScroll(View.FOCUS_DOWN);
+            }
+        });
     }
 }

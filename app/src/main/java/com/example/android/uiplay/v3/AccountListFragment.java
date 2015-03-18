@@ -88,12 +88,12 @@ public class AccountListFragment extends Fragment {
                 random.nextInt(3) + 1);
 
         accountAdapter.add(account);
+        recyclerView.scrollToPosition(accountAdapter.getItemCount() - 1);
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
+        ((MainActivity) activity).onSectionAttached(getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 }
