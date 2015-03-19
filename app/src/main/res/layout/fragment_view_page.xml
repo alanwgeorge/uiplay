@@ -6,10 +6,6 @@
                 android:background="@color/secondary_2_0"
                 android:paddingTop="40dp"
                 android:paddingBottom="50dp">
-                <!--android:paddingEnd="50dp"-->
-                <!--android:paddingRight="50dp"-->
-                <!--android:paddingLeft="50dp"-->
-                <!--android:paddingStart="50dp">-->
 
     <TextView
         android:layout_width="wrap_content"
