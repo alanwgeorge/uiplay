@@ -6,7 +6,6 @@
     <color name="behind_button_background_normal">@color/secondary_2_3</color>
     <color name="behind_button_background_pressed">@color/secondary_1_4</color>
 
-
     <color name="primary_0">#FFA558</color>
     <color name="primary_1">#FFF9F3</color>
     <color name="primary_2">#FFC99A</color>
@@ -24,6 +23,24 @@
     <color name="secondary_2_2">#FF9D9A</color>
     <color name="secondary_2_3">#FF1F19</color>
     <color name="secondary_2_4">#FF0700</color>
+
+    <!--<color name="primary_0">#FF517075</color>-->
+    <!--<color name="primary_1">#FFB7E5EC</color>-->
+    <!--<color name="primary_2">#FF8DACB0</color>-->
+    <!--<color name="primary_3">#FF35494C</color>-->
+    <!--<color name="primary_4">#FF11191A</color>-->
+
+    <!--<color name="secondary_1_0">#FF546D78</color>-->
+    <!--<color name="secondary_1_1">#FFB9DDED</color>-->
+    <!--<color name="secondary_1_2">#FF91A9B4</color>-->
+    <!--<color name="secondary_1_3">#FF37474E</color>-->
+    <!--<color name="secondary_1_4">#FF12181B</color>-->
+
+    <!--<color name="secondary_2_0">#FF527873</color>-->
+    <!--<color name="secondary_2_1">#FFB6EDE5</color>-->
+    <!--<color name="secondary_2_2">#FF8FB3AE</color>-->
+    <!--<color name="secondary_2_3">#FF354E4A</color>-->
+    <!--<color name="secondary_2_4">#FF111B19</color>-->
 
     <color name="primary_text">#44464A</color>
 

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout android:orientation="horizontal"
+                    android:layout_width="@dimen/account_item_width"
+                    android:layout_height="@dimen/account_item_height"
+                    android:id="@+id/front_layout"
+                    tools:ignore="UselessParent">
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        xmlns:tools="http://schemas.android.com/tools"
+                        android:layout_width="@dimen/account_details_width"
+                        android:layout_height="@dimen/account_item_height"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:background="@color/primary_1"
+                        android:visibility="visible"
+                        android:id="@+id/account_details_container">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/account_name"
+                android:text="My Checking"
+                android:layout_alignParentTop="true"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:textColor="#44464A"
+                style="@style/AppTheme.TextAppearance.Medium"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/account_number"
+                android:text="...9876"
+                android:paddingTop="15dp"
+                android:layout_alignParentTop="true"
+                android:layout_toLeftOf="@id/action_indicator"
+                android:layout_toStartOf="@id/action_indicator"
+                tools:ignore="HardcodedText,RtlSymmetry"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/balance_description"
+                android:text="Available balance"
+                android:layout_alignParentBottom="true"
+                android:paddingLeft="15dp"
+                android:paddingBottom="15dp"
+                style="@android:style/TextAppearance.Small"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/balance"
+                android:text="$4,987.98"
+                android:layout_alignParentBottom="true"
+                android:layout_toLeftOf="@id/action_indicator"
+                android:layout_toStartOf="@id/action_indicator"
+                android:paddingBottom="15dp"
+                style="@style/AppTheme.TextAppearance.Medium"
+                tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/action_indicator"
+                android:background="@drawable/action_indicator_v2"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:contentDescription="Action Indicator"
+                tools:ignore="HardcodedText"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/account_item_height"
+            android:id="@+id/front_buttons_container"
+            android:layout_toRightOf="@id/account_details_container"
+            tools:ignore="RtlHardcoded">
+            <ImageView
+                android:layout_width="@dimen/action_scroll_button_width"
+                android:layout_height="match_parent"
+                android:id="@+id/action_scroll_button"
+                android:background="@drawable/action_scroll_button"
+                android:contentDescription="action scroll button"
+                android:visibility="gone"
+                tools:ignore="HardcodedText"/>
+            <View
+                android:layout_width="@dimen/action_scroll_button_width"
+                android:layout_height="35dp"
+                android:visibility="gone"
+                android:id="@+id/action_scroll_right_tap_target"/>
+            <View
+                android:layout_width="@dimen/action_scroll_button_width"
+                android:layout_height="35dp"
+                android:visibility="gone"
+                android:id="@+id/action_scroll_left_tap_target"
+                android:layout_alignParentBottom="true"/>
+            <Button
+                android:layout_width="@dimen/account_button_width"
+                android:layout_height="match_parent"
+                android:id="@+id/button_front_1"
+                android:layout_toRightOf="@+id/action_scroll_button"
+                android:visibility="visible"
+                android:text="Press Me"
+                style="@style/AppTheme.PrimaryButton"
+                tools:ignore="HardcodedText"/>
+            <Button
+                android:layout_width="@dimen/account_button_width"
+                android:layout_height="match_parent"
+                android:id="@+id/button_front_2"
+                android:layout_toRightOf="@id/button_front_1"
+                android:visibility="visible"
+                android:text="Press Me"
+                style="@style/AppTheme.PrimaryButton"
+                tools:ignore="HardcodedText"/>
+            <Button
+                android:layout_width="@dimen/account_button_width"
+                android:layout_height="match_parent"
+                android:id="@+id/button_front_3"
+                android:layout_toRightOf="@id/button_front_2"
+                android:visibility="visible"
+                android:text="Press Me"
+                style="@style/AppTheme.PrimaryButton"
+                tools:ignore="HardcodedText"/>
+            <Button
+                android:layout_width="@dimen/account_button_width"
+                android:layout_height="match_parent"
+                android:id="@+id/button_front_4"
+                android:layout_toRightOf="@id/button_front_3"
+                android:visibility="visible"
+                android:text="Press Me"
+                style="@style/AppTheme.PrimaryButton"
+                tools:ignore="HardcodedText"/>
+            <Button
+                android:layout_width="@dimen/account_button_width"
+                android:layout_height="match_parent"
+                android:id="@+id/button_front_5"
+                android:layout_toRightOf="@id/button_front_4"
+                android:visibility="visible"
+                android:text="Press Me"
+                style="@style/AppTheme.PrimaryButton"
+                tools:ignore="HardcodedText"/>
+            <Button
+                android:layout_width="@dimen/account_button_width"
+                android:layout_height="match_parent"
+                android:id="@+id/button_front_6"
+                android:layout_toRightOf="@id/button_front_5"
+                android:visibility="visible"
+                android:text="Press Me"
+                style="@style/AppTheme.PrimaryButton"
+                tools:ignore="HardcodedText"/>
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

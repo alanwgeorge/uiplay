@@ -17,4 +17,7 @@
     <dimen name="navigation_drawer_width">240dp</dimen>
     <dimen name="pager_page_indicator_height">10dp</dimen>
     <dimen name="pager_page_indicator_width">10dp</dimen>
+    <dimen name="account_details_width">350dp</dimen>
+    <dimen name="action_indicator_v2_dot_size">6dp</dimen>
+    <dimen name="action_scroll_button_width">25dp</dimen>
 </resources>

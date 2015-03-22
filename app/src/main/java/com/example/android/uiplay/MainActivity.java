@@ -54,6 +54,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             case 4:
                 fragment = new ViewPagerFragment();
                 break;
+            case 5:
+                fragment = new com.example.android.uiplay.v6.AccountListFragment();
+                break;
             default:
                 fragment = new com.example.android.uiplay.v1.AccountListFragment();
         }
@@ -82,6 +85,8 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             case 5:
                 title = getString(R.string.title_section5);
                 break;
+            case 6:
+                title = getString(R.string.title_section6);
         }
     }
 
