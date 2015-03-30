@@ -9,7 +9,7 @@ RecyclerView item layout with a variable number of off screen action buttons to 
 
 ![screen2](screens/AccountListV2-RecyclerView.gif?raw=true  "Account List V1")
 
-PagerView implementation of offer presentation.
+PagerView implementation of offer presentation with swipe and touch area navigation.
 
 ![screen3](screens/Offers-ViewPager.gif?raw=true  "Account List V1")
 
