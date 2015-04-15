@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 bootanim=""
 failcounter=0
 until [[ "$bootanim" =~ "stopped" ]]; do
@@ -14,4 +15,5 @@ until [[ "$bootanim" =~ "stopped" ]]; do
    fi
    sleep 1
 done
+
 echo "Done"
