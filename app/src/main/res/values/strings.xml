@@ -26,5 +26,6 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="offer_button_label">Get Started</string>
+    <string name="title_section7">Expandable List</string>
 
 </resources>

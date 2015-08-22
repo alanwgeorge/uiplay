@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.android.uiplay.expandablelist.ItemFragment;
 import com.example.android.uiplay.v5.ViewPagerFragment;
 
 
@@ -57,6 +58,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
             case 5:
                 fragment = new com.example.android.uiplay.v6.AccountListFragment();
                 break;
+            case 6:
+                fragment = ItemFragment.newInstance();
+                break;
             default:
                 fragment = new com.example.android.uiplay.v1.AccountListFragment();
         }
@@ -87,6 +91,9 @@ public class MainActivity extends ActionBarActivity implements NavigationDrawerF
                 break;
             case 6:
                 title = getString(R.string.title_section6);
+                break;
+            case 7:
+                title = getString(R.string.title_section7);
         }
     }
 

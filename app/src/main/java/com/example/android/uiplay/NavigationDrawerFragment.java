@@ -111,7 +111,8 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.title_section3),
                         getString(R.string.title_section4),
                         getString(R.string.title_section5),
-                        getString(R.string.title_section6)
+                        getString(R.string.title_section6),
+                        getString(R.string.title_section7)
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;
@@ -180,10 +181,10 @@ public class NavigationDrawerFragment extends Fragment {
             @Override
             public boolean onOptionsItemSelected(MenuItem item) {
                 if (item != null && item.getItemId() == android.R.id.home) {
-                    if (mDrawerLayout.isDrawerOpen(Gravity.START)) {
-                        mDrawerLayout.closeDrawer(Gravity.START);
+                    if (mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                        mDrawerLayout.closeDrawer(GravityCompat.START);
                     } else {
-                        mDrawerLayout.openDrawer(Gravity.START);
+                        mDrawerLayout.openDrawer(GravityCompat.START);
                     }
                 }
                 return false;
