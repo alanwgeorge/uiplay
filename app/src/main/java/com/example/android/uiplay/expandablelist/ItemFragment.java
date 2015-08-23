@@ -8,72 +8,83 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+
+import com.example.android.uiplay.MainActivity;
 import com.example.android.uiplay.R;
-import com.example.android.uiplay.databinding.FragmentExspandableListBinding;
-import com.example.android.uiplay.databinding.ItemRowBinding;
+import com.example.android.uiplay.databinding.ChildMenuRowBinding;
+import com.example.android.uiplay.databinding.FragmentExpandableListBinding;
+import com.example.android.uiplay.databinding.GroupMenuRowBinding;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ItemFragment extends Fragment {
-    private String[] fruit = {"apple", "orange", "bannana", "peach"};
-    private String[] animals = {"lion", "tiger", "elephant", "bear", "kangaro", "rhinoserous"};
-
-    private FragmentExspandableListBinding binding;
+    private Map<String, String[]> menuGroups;
 
     public static ItemFragment newInstance() {
         return new ItemFragment();
     }
 
-    public ItemFragment() { }
+    public ItemFragment() {
+        menuGroups = new HashMap<>();
+        String[] fruits = {"apple", "orange", "banana", "peach"};
+        menuGroups.put("fruits", fruits);
+        String[] singles = {"just me"};
+        menuGroups.put("singles", singles);
+        String[] elements = {"carbon", "helium", "uranium", "plutonium", "neon", "gold", "lead", "silver", "copper"};
+        menuGroups.put("elements", elements);
+        String[] animals = {"lion", "tiger", "elephant", "bear", "kangaroo", "rhinoceros"};
+        menuGroups.put("animals", animals);
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_exspandable_list, container, false);
-        binding = DataBindingUtil.bind(view);
-        binding.setController(new ListsController(binding));
+        View view = inflater.inflate(R.layout.fragment_expandable_list, container, false);
+        FragmentExpandableListBinding binding = DataBindingUtil.bind(view);
+        MenuController menuController = new MenuController();
+        binding.setController(menuController);
 
-        binding.listView1.setAdapter(new ItemArrayAdapter(getActivity(), 0, fruit));
-        binding.listView2.setAdapter(new ItemArrayAdapter(getActivity(), 0, animals));
+        for (String groupMenuString : menuGroups.keySet()) {
+            LinearLayout menuGroupView = (LinearLayout) inflater.inflate(R.layout.group_menu_row, binding.menuGroupLayout, false);
+            GroupMenuRowBinding groupMenuRowBinding = DataBindingUtil.bind(menuGroupView);
 
-        binding.listView1.post(new Runnable() {
-            @Override
-            public void run() {
-                binding.getController().setListView1FullHeight(binding.listView1.getMeasuredHeight());
+            binding.menuGroupLayout.addView(menuGroupView);
+
+            int childViewIndex = 0;
+            for (String childMenuString : menuGroups.get(groupMenuString)) {
+                LinearLayout menuChildView = (LinearLayout) inflater.inflate(R.layout.child_menu_row, binding.menuGroupLayout, false);
+                ChildMenuRowBinding childMenuRowBinding = DataBindingUtil.bind(menuChildView);
+
+                childMenuRowBinding.rowText.setText(childMenuString);
+                childMenuRowBinding.rowNumber.setText(String.valueOf(++childViewIndex));
+
+                groupMenuRowBinding.childListView.addView(menuChildView);
+
+                ViewGroup.LayoutParams params1 = groupMenuRowBinding.childListView.getLayoutParams();
+                params1.height = 0;
+                groupMenuRowBinding.childListView.setLayoutParams(params1);
             }
-        });
 
-        binding.listView2.post(new Runnable() {
-            @Override
-            public void run() {
-                binding.getController().setListView2FullHeight(binding.listView2.getMeasuredHeight());
-            }
-        });
+            MenuGroupController menuGroupController = new MenuGroupController(
+                    groupMenuRowBinding,
+                    menuController,
+                    groupMenuString,
+                    (int) getResources().getDimension(R.dimen.child_menu_height)
+            );
+
+            groupMenuRowBinding.setController(menuGroupController);
+            menuController.observe(menuGroupController);
+        }
 
         return view;
     }
 
-
-    private class ItemArrayAdapter extends ArrayAdapter<String> {
-        private LayoutInflater layoutInflater;
-        public ItemArrayAdapter(Context context, int resource, String[] objects) {
-            super(context, resource, objects);
-            layoutInflater = LayoutInflater.from(context);
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            String itemString = getItem(position);
-
-            if (convertView == null) {
-                convertView = layoutInflater.inflate(R.layout.item_row, null);
-            }
-
-            ItemRowBinding itemRowBinding = DataBindingUtil.bind(convertView);
-
-            itemRowBinding.rowNumber.setText(String.valueOf(position + 1));
-            itemRowBinding.rowText.setText(itemString);
-
-            return convertView;
-        }
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        ((MainActivity) context).onSectionAttached(
+                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 }

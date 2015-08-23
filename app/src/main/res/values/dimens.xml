@@ -20,4 +20,5 @@
     <dimen name="account_details_width">350dp</dimen>
     <dimen name="action_indicator_v2_dot_size">6dp</dimen>
     <dimen name="action_scroll_button_width">25dp</dimen>
+    <dimen name="child_menu_height">50dp</dimen>
 </resources>
