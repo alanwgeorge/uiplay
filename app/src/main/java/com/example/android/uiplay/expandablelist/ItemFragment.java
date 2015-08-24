@@ -62,10 +62,10 @@ public class ItemFragment extends Fragment {
 
                 groupMenuRowBinding.childListView.addView(menuChildView);
 
-                ViewGroup.LayoutParams params1 = groupMenuRowBinding.childListView.getLayoutParams();
-                params1.height = 0;
-                groupMenuRowBinding.childListView.setLayoutParams(params1);
             }
+            ViewGroup.LayoutParams params1 = groupMenuRowBinding.childListView.getLayoutParams();
+            params1.height = 0;
+            groupMenuRowBinding.childListView.setLayoutParams(params1);
 
             MenuGroupController menuGroupController = new MenuGroupController(
                     groupMenuRowBinding,
