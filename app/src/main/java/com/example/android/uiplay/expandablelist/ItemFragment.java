@@ -32,7 +32,7 @@ public class ItemFragment extends Fragment {
         menuGroups.put("fruits", fruits);
         String[] singles = {"just me"};
         menuGroups.put("singles", singles);
-        String[] elements = {"carbon", "helium", "uranium", "plutonium", "neon", "gold", "lead", "silver", "copper"};
+        String[] elements = {"carbon", "helium", "uranium", "plutonium", "neon", "gold", "lead", "silver", "copper", "lead"};
         menuGroups.put("elements", elements);
         String[] animals = {"lion", "tiger", "elephant", "bear", "kangaroo", "rhinoceros"};
         menuGroups.put("animals", animals);
