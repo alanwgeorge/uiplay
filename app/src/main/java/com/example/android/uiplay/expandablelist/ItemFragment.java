@@ -56,10 +56,9 @@ public class ItemFragment extends Fragment {
             for (String childMenuString : menuGroups.get(groupMenuString)) {
                 LinearLayout menuChildView = (LinearLayout) inflater.inflate(R.layout.child_menu_row, binding.menuGroupLayout, false);
                 ChildMenuRowBinding childMenuRowBinding = DataBindingUtil.bind(menuChildView);
-
-                childMenuRowBinding.rowText.setText(childMenuString);
-                childMenuRowBinding.rowNumber.setText(String.valueOf(++childViewIndex));
-
+                childMenuRowBinding.setMenuNumber(String.valueOf(++childViewIndex));
+                childMenuRowBinding.setMenuText(childMenuString);
+                childMenuRowBinding.setController(new MenuItemController());
                 groupMenuRowBinding.childListView.addView(menuChildView);
 
             }

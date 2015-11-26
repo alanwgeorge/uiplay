@@ -50,9 +50,9 @@ public class MenuGroupController {
     @SuppressWarnings("deprecation")
     public void setProgress(int progress) {
         if (progress > this.progress && isCollapsed()) {
-            binding.rowText.setBackgroundColor(App.context.getResources().getColor(R.color.secondary_1_3));
+            binding.rowText.setSelected(true);
         } else if (progress < this.progress && isExpanded()){
-            binding.rowText.setBackgroundColor(App.context.getResources().getColor(R.color.secondary_1_2));
+            binding.rowText.setSelected(false);
         }
         this.progress = progress;
         ViewGroup.LayoutParams params1 = binding.childListView.getLayoutParams();

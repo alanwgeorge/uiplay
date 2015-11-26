@@ -2,7 +2,10 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light">
-        <!-- Customize your theme here. -->
+        <item name="android:colorBackground">@color/primary_1</item>
+        <item name="colorPrimary">@color/secondary_2_2</item>
+        <item name="colorPrimaryDark">@color/secondary_2_3</item>
+        <item name="colorAccent">@color/primary_3</item>
     </style>
 
     <style name="AppTheme.BaseButton">

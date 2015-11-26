@@ -1,18 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools">
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="controller" type="com.example.android.uiplay.expandablelist.MenuItemController"/>
+        <variable name="menuText" type="java.lang.String"/>
+        <variable name="menuNumber" type="java.lang.String"/>
+    </data>
 
     <LinearLayout
             android:orientation="horizontal"
             android:padding="10dp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/child_menu_height"
+            android:background="@drawable/menu_item_expandable_selector"
+            android:clickable="true"
+            app:setOnClickListener="@{controller.getMenuItemClickListener}"
             android:gravity="center_vertical">
 
         <TextView android:layout_width="30dp"
                   android:layout_height="match_parent"
                   android:id="@+id/rowNumber"
-                  android:text="23"
+                  android:text="@{menuNumber}"
                   android:gravity="center_vertical"
                   tools:ignore="HardcodedText"/>
 
@@ -20,7 +29,7 @@
                   android:layout_height="match_parent"
                   android:id="@+id/rowText"
                   android:gravity="center_vertical"
-                  android:text="banana"
+                  android:text="@{menuText}"
                   tools:ignore="HardcodedText"/>
     </LinearLayout>
 </layout>
