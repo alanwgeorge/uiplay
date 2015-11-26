@@ -1,6 +1,5 @@
 package com.example.android.uiplay.v4;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,7 +10,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.uiplay.MainActivity;
 import com.example.android.uiplay.R;
 
 public class AccountListFragment extends Fragment {
@@ -50,12 +48,5 @@ public class AccountListFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.account_row_custom, container, false);
 
         return rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 }

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.os.StrictMode;
 import android.util.DisplayMetrics;
 
+import timber.log.Timber;
+
 public class App extends Application {
     public static Context context;
 
@@ -13,6 +15,8 @@ public class App extends Application {
         context = getApplicationContext();
 
         if (BuildConfig.DEBUG) {
+            Timber.plant(new Timber.DebugTree());
+
             StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
                     .detectAll()
                     .penaltyLog()

@@ -1,7 +1,6 @@
 package com.example.android.uiplay.v5;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,7 +16,6 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.android.uiplay.App;
-import com.example.android.uiplay.MainActivity;
 import com.example.android.uiplay.R;
 
 import java.util.ArrayList;
@@ -79,13 +77,6 @@ public class ViewPagerFragment extends Fragment implements ViewPager.OnPageChang
                 return false;
             }
         });
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 
     @Override

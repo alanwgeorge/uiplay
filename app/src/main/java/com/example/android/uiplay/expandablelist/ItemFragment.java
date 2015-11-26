@@ -1,6 +1,5 @@
 package com.example.android.uiplay.expandablelist;
 
-import android.content.Context;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.example.android.uiplay.MainActivity;
 import com.example.android.uiplay.R;
 import com.example.android.uiplay.databinding.ChildMenuRowBinding;
 import com.example.android.uiplay.databinding.FragmentExpandableListBinding;
@@ -79,12 +77,5 @@ public class ItemFragment extends Fragment {
         }
 
         return view;
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        ((MainActivity) context).onSectionAttached(
-                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 }

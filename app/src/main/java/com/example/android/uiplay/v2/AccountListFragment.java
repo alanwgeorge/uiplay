@@ -1,6 +1,5 @@
 package com.example.android.uiplay.v2;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ListFragment;
@@ -12,7 +11,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.android.uiplay.MainActivity;
 import com.example.android.uiplay.R;
 import com.example.android.uiplay.model.Account;
 
@@ -62,13 +60,6 @@ public class AccountListFragment extends ListFragment {
         addAccountRow();
 
         return rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 
     private void addAccountRow() {

@@ -1,67 +1,122 @@
 package com.example.android.uiplay;
 
 
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import com.example.android.uiplay.databinding.ActivityMainBinding;
 import com.example.android.uiplay.expandablelist.ItemFragment;
 import com.example.android.uiplay.v5.ViewPagerFragment;
 
+import timber.log.Timber;
 
-public class MainActivity extends AppCompatActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
-    private static final String TAG = "MainActivity";
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static final String ARG_SECTION_NUMBER = "section_number";
 
-    private NavigationDrawerFragment navigationDrawerFragment;
-    private CharSequence title;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private DrawerLayout drawerLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d(TAG, "onCreate()");
+        Timber.d("onCreate()");
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
-        navigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager().findFragmentById(R.id.navigation_drawer);
-        title = getTitle();
+        drawerLayout = binding.drawerLayout;
 
-        navigationDrawerFragment.setUp(R.id.navigation_drawer, (DrawerLayout) findViewById(R.id.drawer_layout));
+        setSupportActionBar(binding.toolbar);
+        binding.navigationDrawer.setNavigationItemSelectedListener(this);
+
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.toolbar, R.string.openDrawer, R.string.closeDrawer){
+            @Override
+            public void onDrawerClosed(View drawerView) {
+                super.onDrawerClosed(drawerView);
+                invalidateOptionsMenu();
+                syncState();
+            }
+
+            @Override
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+                syncState();
+            }
+        };
+
+        binding.drawerLayout.setDrawerListener(actionBarDrawerToggle);
+
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        } else {
+            Timber.e("action bar is null!");
+        }
     }
 
     @Override
-    public void onNavigationDrawerItemSelected(int position) {
+    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        actionBarDrawerToggle.syncState();
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment;
+        String title;
+        int position;
 
-        switch (position) {
-            case 0:
+        switch (item.getItemId()) {
+            case R.id.navigation_item_1:
                 fragment = new com.example.android.uiplay.v1.AccountListFragment();
+                title = getString(R.string.title_section1);
+                position = 1;
                 break;
-            case 1:
+            case R.id.navigation_item_2:
                 fragment = new com.example.android.uiplay.v2.AccountListFragment();
+                title = getString(R.string.title_section2);
+                position = 2;
                 break;
-            case 2:
+            case R.id.navigation_item_3:
                 fragment = new com.example.android.uiplay.v3.AccountListFragment();
+                title = getString(R.string.title_section3);
+                position = 3;
                 break;
-            case 3:
+            case R.id.navigation_item_4:
                 fragment = new com.example.android.uiplay.v4.AccountListFragment();
+                title = getString(R.string.title_section4);
+                position = 4;
                 break;
-            case 4:
+            case R.id.navigation_item_5:
                 fragment = new ViewPagerFragment();
+                title = getString(R.string.title_section5);
+                position = 5;
                 break;
-            case 5:
+            case R.id.navigation_item_6:
                 fragment = new com.example.android.uiplay.v6.AccountListFragment();
+                title = getString(R.string.title_section6);
+                position = 6;
                 break;
-            case 6:
+            case R.id.navigation_item_7:
                 fragment = ItemFragment.newInstance();
+                title = getString(R.string.title_section7);
+                position = 7;
                 break;
             default:
                 fragment = new com.example.android.uiplay.v1.AccountListFragment();
+                title = getString(R.string.title_section1);
+                position = 1;
         }
 
         Bundle args = new Bundle();
@@ -69,53 +124,14 @@ public class MainActivity extends AppCompatActivity implements NavigationDrawerF
         fragment.setArguments(args);
 
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-    }
 
-    public void onSectionAttached(int number) {
-        switch (number) {
-            case 1:
-                title = getString(R.string.title_section1);
-                break;
-            case 2:
-                title = getString(R.string.title_section2);
-                break;
-            case 3:
-                title = getString(R.string.title_section3);
-                break;
-            case 4:
-                title = getString(R.string.title_section4);
-                break;
-            case 5:
-                title = getString(R.string.title_section5);
-                break;
-            case 6:
-                title = getString(R.string.title_section6);
-                break;
-            case 7:
-                title = getString(R.string.title_section7);
-        }
-    }
+        drawerLayout.closeDrawer(GravityCompat.START);
 
-    public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(title);
-    }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        if (!navigationDrawerFragment.isDrawerOpen()) {
-            getMenuInflater().inflate(R.menu.global, menu);
-            restoreActionBar();
-            return true;
-        }
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
+        return false;
     }
 }

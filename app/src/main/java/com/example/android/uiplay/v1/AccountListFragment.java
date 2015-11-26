@@ -1,6 +1,5 @@
 package com.example.android.uiplay.v1;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -13,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 
 import com.example.android.uiplay.AccountRowBuilder;
-import com.example.android.uiplay.MainActivity;
 import com.example.android.uiplay.R;
 import com.example.android.uiplay.model.Account;
 
@@ -66,13 +64,6 @@ public class AccountListFragment extends Fragment {
         addAccountRow(fragmentContainer);
 
         return rootView;
-    }
-
-    @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        ((MainActivity) activity).onSectionAttached(
-                getArguments().getInt(MainActivity.ARG_SECTION_NUMBER));
     }
 
     private void addAccountRow(ViewGroup container) {
