@@ -24,6 +24,20 @@
     <color name="secondary_2_3">#FF1F19</color>
     <color name="secondary_2_4">#FF0700</color>
 
+
+    <!--Theme2-->
+    <color name="t2_primary_0">#FF6B7899</color>
+    <color name="t2_primary_1">#FFC7CCD9</color>
+    <color name="t2_primary_2">#FF949EB5</color>
+    <color name="t2_primary_3">#FF495880</color>
+    <color name="t2_primary_4">#FF2E3F68</color>
+
+    <color name="t2_complement_0">#FFE4CB97</color>
+    <color name="t2_complement_1">#FFFFF7E7</color>
+    <color name="t2_complement_2">#FFFFEECB</color>
+    <color name="t2_complement_3">#FFBEA062</color>
+    <color name="t2_complement_4">#FF9A7B3A</color>
+
     <!--<color name="primary_0">#FF517075</color>-->
     <!--<color name="primary_1">#FFB7E5EC</color>-->
     <!--<color name="primary_2">#FF8DACB0</color>-->

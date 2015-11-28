@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/sign_off"
+            android:title="@string/menu_signoff"/>
+        <item
+            android:id="@+id/accounts"
+            android:title="Accounts"/>
+        <item
+            android:id="@+id/checkdeposit"
+            android:title="Check Deposit"/>
+        <item
+            android:id="@+id/messagecenter"
+            android:title="Message Center"/>
+    </group>
+    <item android:title="Transfer &amp; Payment">
+        <menu>
+            <item
+                android:title="Transfers"
+                android:id="@+id/transfers"/>
+            <item
+                android:title="Pay Bills"
+                android:id="@+id/paybills"/>
+            <item
+                android:title="Wallet"
+                android:id="@+id/wallet"/>
+        </menu>
+    </item>
+    <item android:title="Settings">
+        <menu>
+            <item
+                android:title="Push Notifications"
+                android:id="@+id/pushnotifications"/>
+            <item
+                android:title="Language"
+                android:id="@+id/language"/>
+        </menu>
+    </item>
+    <item android:title="Resources">
+        <menu>
+            <item
+                android:title="FAQs"
+                android:id="@+id/faqs"/>
+            <item
+                android:title="Legal"
+                android:id="@+id/legal"/>
+            <item
+                android:title="Contact Us"
+                android:id="@+id/contactus"/>
+        </menu>
+    </item>
+</menu>

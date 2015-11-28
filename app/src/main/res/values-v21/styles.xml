@@ -1,0 +1,14 @@
+<resources>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="AppTheme2" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/t2_primary_2</item>
+        <item name="colorPrimaryDark">@color/t2_primary_0</item>
+        <item name="colorAccent">@color/t2_complement_3</item>
+        <item name="android:navigationBarColor">@color/t2_primary_4</item>
+    </style>
+
+</resources>

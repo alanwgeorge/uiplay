@@ -20,9 +20,9 @@ import com.example.android.uiplay.model.Account;
 import java.text.NumberFormat;
 import java.util.Locale;
 
-public class AccountRowBuilder {
-//    private static final String TAG = "AccountRowBuilder";
+import timber.log.Timber;
 
+public class AccountRowBuilder {
     public static View setupAccountRow(@NonNull View accountRowItem,
                                 @NonNull Account account,
                                 @Nullable AccountRowViewHolder viewHolder,
@@ -117,6 +117,10 @@ public class AccountRowBuilder {
     public static void setupViewWidths(AccountRowViewHolder viewHolder) {
         // Here we set the width of our scrollable area, its container and the divider to be the
         // screen width plus the size of any left scrollable buttons
+        if (App.context == null) {
+            Timber.d("App.context is null");
+        }
+
         WindowManager windowManager = (WindowManager) App.context.getSystemService(Context.WINDOW_SERVICE);
         Display display = windowManager.getDefaultDisplay();
         Point size = new Point();

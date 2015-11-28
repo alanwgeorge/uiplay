@@ -23,6 +23,9 @@
         <item
             android:id="@+id/navigation_item_7"
             android:title="@string/title_section7"/>
+        <item
+            android:id="@+id/navigation_item_8"
+            android:title="@string/title_section8"/>
 
     </group>
 </menu>
