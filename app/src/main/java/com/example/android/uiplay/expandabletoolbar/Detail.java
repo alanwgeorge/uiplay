@@ -2,6 +2,7 @@ package com.example.android.uiplay.expandabletoolbar;
 
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public class Detail {
     private String description;
     private int amount;

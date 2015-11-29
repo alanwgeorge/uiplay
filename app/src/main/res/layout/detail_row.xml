@@ -10,11 +10,6 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <View
-            android:id="@+id/divider"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="?attr/colorPrimary"/>
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -51,5 +46,10 @@
                 <!--android:text="$4,789.43"-->
             </LinearLayout>
         </LinearLayout>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="?attr/colorPrimary"/>
     </LinearLayout>
 </layout>

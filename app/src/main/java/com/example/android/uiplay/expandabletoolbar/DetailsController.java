@@ -4,6 +4,7 @@ import android.view.View;
 
 import java.util.Date;
 
+@SuppressWarnings("unused")
 public class DetailsController {
     private DetailAdapter detailAdapter;
 

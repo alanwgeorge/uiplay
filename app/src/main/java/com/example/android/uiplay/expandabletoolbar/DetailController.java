@@ -3,6 +3,7 @@ package com.example.android.uiplay.expandabletoolbar;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 
+@SuppressWarnings("unused")
 public class DetailController {
     private Detail detail;
     public static final DateFormat dateFormat = DateFormat.getDateInstance();
