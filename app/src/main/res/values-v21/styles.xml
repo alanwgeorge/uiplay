@@ -9,6 +9,7 @@
         <item name="colorPrimaryDark">@color/t2_primary_0</item>
         <item name="colorAccent">@color/t2_complement_3</item>
         <item name="android:navigationBarColor">@color/t2_primary_4</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
 
 </resources>
