@@ -124,9 +124,7 @@
                             android:layout_gravity="end"
                             android:orientation="horizontal"
                             android:layout_alignParentEnd="true"
-                            android:layout_alignParentRight="true"
-                            android:layout_marginEnd="-10dp"
-                            android:layout_marginRight="-10dp">
+                            android:layout_alignParentRight="true">
                             <Button
                                 android:layout_width="80dp"
                                 android:layout_height="match_parent"
