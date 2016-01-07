@@ -1,13 +1,12 @@
 package com.example.android.uiplay.expandablelist;
 
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.android.uiplay.App;
 import com.example.android.uiplay.R;
 import com.example.android.uiplay.databinding.GroupMenuRowBinding;
-
-import org.antlr.v4.runtime.misc.NotNull;
 
 public class MenuGroupController {
     private GroupMenuRowBinding binding;
@@ -16,7 +15,7 @@ public class MenuGroupController {
     private int fullHeight = -1;
     private int progress = 0;
 
-    public MenuGroupController(@NotNull GroupMenuRowBinding binding, @NotNull MenuController menuController, @NotNull String label, int childHeightPx) {
+    public MenuGroupController(@NonNull GroupMenuRowBinding binding, @NonNull MenuController menuController, @NonNull String label, int childHeightPx) {
         this.binding = binding;
         this.menuController = menuController;
         this.label = label;

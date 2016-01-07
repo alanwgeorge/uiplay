@@ -9,8 +9,6 @@ import android.widget.SeekBar;
 
 import com.example.android.uiplay.BR;
 
-import org.antlr.v4.runtime.misc.NotNull;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,7 +26,7 @@ public class MenuController extends BaseObservable {
         menuGroupControllers.add(controller);
     }
 
-    public void onMenuGroupClick(@NotNull final MenuGroupController menuGroupController) {
+    public void onMenuGroupClick(@NonNull final MenuGroupController menuGroupController) {
         final boolean isTargetExpanding =! menuGroupController.isExpanded();
         final List<MenuGroupController> collapsibleList = new ArrayList<>();
 
